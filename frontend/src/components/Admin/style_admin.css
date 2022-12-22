@@ -1,0 +1,496 @@
+/* ==============css dashboard========= */
+/* .Dashbroad-section {
+  width: 100%;
+  position: relative;
+}
+
+.search-field {
+  width: fit-content;
+}
+.navbar-menu-wrapper {
+  display: -webkit-inline-box;
+  background-color: #1e293b;
+  width: 100%;
+  line-height: 1.5;
+  justify-content: space-evenly;
+}
+
+.navbar-nav-right {
+  display: flex;
+  margin-left: auto;
+}
+
+.nav-item {
+  margin-right: 30px;
+}
+
+.dashbroad-body {
+  margin: 20px 30px;
+}
+
+.header-dashbroad {
+  color: aliceblue;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.dashbroad-row {
+  display: flex;
+}
+
+.card-dashbroad-cover {
+  width: 250px;
+  height: 150px;
+  margin-right: 20px;
+}
+
+.stretch-card {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.stretch-card > .card {
+  width: 100%;
+  min-width: 100%;
+}
+
+.card-dashbroad {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-dashbroad-body {
+  flex: 1 1 auto;
+  padding: 1.75rem 1.5625rem;
+}
+
+.card-dashbroad .card-dashbroad-body {
+  padding: 20px;
+}
+
+.header-text {
+  font-size: 27px;
+  color: aliceblue;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.text-muted-dashboard {
+  color: aliceblue !important;
+  font-size: 18px;
+}
+===============USER-ADMIN======== 
+
+.user-section {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.user-card {
+  border-radius: 4px;
+  margin-bottom: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.user-card .user-card-header {
+  padding: 15px 15px 0;
+  border-bottom: none !important;
+}
+
+.user-card .user-card-title {
+  margin: 0;
+  color: #fff;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 30px;
+  transform: uppercase;
+}
+
+.card .card-body {
+  padding: 15px 15px 10px;
+}
+
+.pl-0,
+.px-0 {
+  padding-left: 0 !important;
+}
+.pr-0,
+.px-0 {
+  padding-right: 0 !important;
+}
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+}
+.user-table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.user-table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+.card .table tbody td:first-child,
+.card .table thead th:first-child {
+  padding-left: 15px;
+}
+
+.user-table > thead > tr > th {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #9a9a9a;
+  font-weight: 400;
+  padding-bottom: 5px;
+  border-top: none !important;
+  text-align: left !important;
+}
+
+.user-table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
+  padding: 12px 8px;
+  vertical-align: middle;
+}
+.user-table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+.user-table td,
+.user-table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+.user-nav {
+  border: 0 !important;
+}
+
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+.user-table > tbody > tr {
+  position: relative;
+}
+
+.user-table > tbody > tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.user-card .user-table tbody td:first-child,
+.user-card .user-table thead th:first-child {
+  padding-left: 15px;
+}
+
+.user-table > tbody > tr > td,
+.user-table > tbody > tr > th,
+.user-table > tfoot > tr > td,
+.user-table > tfoot > tr > th,
+.user-table > thead > tr > td,
+.user-table > thead > tr > th {
+  padding: 12px 8px;
+  vertical-align: middle;
+}
+
+.user-table td,
+.user-table th {
+  border-top: 1px solid #dee2e6;
+}
+
+.user-btn-edit {
+  background-color: #bfb577;
+  width: 35px;
+  height: 20px;
+  border-radius: 5px;
+}
+
+.user-btn-delete {
+  margin-left: 10px;
+  background-color: #ab494f;
+  width: 55px;
+  height: 15px;
+  border-radius: 5px;
+}
+.btn-click {
+  padding: revert !important;
+}
+===============movie-ADMIN======== 
+
+.movie-section {
+  width: 100%;
+  margin: 0 auto;
+  color: #fff;
+}
+
+.movie-card {
+  border-radius: 4px;
+  margin-bottom: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.movie-card .movie-card-header {
+  padding: 15px 15px 0;
+  color: #fff;
+  border-bottom: none !important;
+}
+
+.movie-card .movie-card-title {
+  margin: 0;
+  color: #fff;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 30px;
+  transform: uppercase;
+}
+
+.card .card-body {
+  padding: 15px 15px 10px;
+}
+
+.pl-0,
+.px-0 {
+  padding-left: 0 !important;
+}
+.pr-0,
+.px-0 {
+  padding-right: 0 !important;
+}
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+}
+.movie-table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.movie-table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+.card .table tbody td:first-child,
+.card .table thead th:first-child {
+  padding-left: 15px;
+}
+
+.movie-table > thead > tr > th {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #9a9a9a;
+  font-weight: 400;
+  padding-bottom: 5px;
+  border-top: none !important;
+  text-align: left !important;
+}
+
+.movie-table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
+  padding: 12px 8px;
+  vertical-align: middle;
+}
+.movie-table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+.movie-table td,
+.movie-table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+.movie-nav {
+  border: 0 !important;
+  overflow: hidden;
+  max-width: 200px;
+}
+
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+.movie-table > tbody > tr {
+  position: relative;
+}
+
+.movie-table > tbody > tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.movie-card .movie-table tbody td:first-child,
+.movie-card .movie-table thead th:first-child {
+  padding-left: 15px;
+}
+
+.movie-table > tbody > tr > td,
+.movie-table > tbody > tr > th,
+.movie-table > tfoot > tr > td,
+.movie-table > tfoot > tr > th,
+.movie-table > thead > tr > td,
+.movie-table > thead > tr > th {
+  padding: 12px 8px;
+  vertical-align: middle;
+}
+
+.movie-table td,
+.movie-table th {
+  border-top: 1px solid #dee2e6;
+}
+
+.movie-btn-edit {
+  background-color: #bfb577;
+  width: 35px;
+  height: 20px;
+  border-radius: 5px;
+}
+
+.movie-btn-delete {
+  background-color: #ab494f;
+  width: 55px;
+  height: 20px;
+  border-radius: 5px;
+}
+
+.img_admin {
+  width: 100%;
+}
+
+
+
+.Sidebar-container {
+  display: flex;
+  width: 100%;
+}
+
+.Sidebar {
+  background-color: #1e293b;
+  color: whitesmoke;
+  height: 100em;
+  width: 270px;
+  transition: all 0.5s;
+}
+
+.top-section {
+  display: flex;
+  align-items: center;
+  padding: 20px 15px;
+}
+
+.logo {
+  font-size: 30px;
+  font-family: "Denk One";
+  text-decoration: none !important;
+  color: #dbb42c !important;
+}
+
+.bars {
+  display: flex;
+  font-size: 25px;
+  margin-left: 25px;
+}
+
+.link {
+  position: relative;
+  display: flex;
+  color: white;
+  padding: 10px 15px;
+  gap: 15px;
+  transition: all 0.5s;
+}
+
+.link:hover {
+  background-color: #9a9a9a;
+  color: white;
+  transition: all 0.5s;
+}
+
+.active {
+  background-color: 9a9a9a;
+  color: white;
+}
+
+.active::before {
+  position: absolute;
+  left: 0;
+  background-color: #dcdbdb;
+  width: 3px;
+  height: 42px;
+  top: 0;
+}
+
+.icon,
+.link_text {
+  font-size: 18px;
+}
+
+.user-section {
+  width: 100%;
+} */
