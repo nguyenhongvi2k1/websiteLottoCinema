@@ -38,16 +38,16 @@ class GiaVe extends Component {
             <img src={movie.poster} className="lazyload" alt="poster" />
           </div>
           <div className="movie-txt">
-            <h3>{movie.title} </h3>
+            <h3 className="md:text-lg text-base">{movie.title} </h3>
           </div>
           <div className="movie-over">
-            <p>{movie.content}</p>
+            <p className="md:text-base text-ms">{movie.content}</p>
             <span className="atc">...</span>
             <div className="flex flex-col align-items-center justify-content-center text-center bottom-0">
               <a href={`/phim/${movie.id}`} className="detail-link">
                 Chi tiết
               </a>
-              <a href={`/trailer/${movie.id}`} className="trailler-btn">
+              <a href={`/trailer/${movie.id}`} className="trailler-btn text-sm">
                 Xem Trailer
               </a>
               <div className="border rounded-full bg-rose-500	 mt-5 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-amber-500 duration-300">
@@ -81,14 +81,18 @@ class GiaVe extends Component {
         <BuyTicket />
         <div className="container text-white mt-2">
           <div className="text-center m-5 ">
-            <h2 className="font-bold uppercase text-4xl">Bảng giá vé</h2>
+            <h2 className="font-bold uppercase md:text-3xl text-xl">
+              Bảng giá vé
+            </h2>
           </div>
           <div>
             <img src={giave} alt={"Bảng giá vé"} />
           </div>
           <div className="text-center item-center mt-5">
             <div className="text-center">
-              <h2 className="text-3xl font-bold uppercase">Các phim HOT</h2>
+              <h2 className="md:text-3xl text-xl font-bold uppercase">
+                Các phim HOT
+              </h2>
             </div>
             <div className=" bg-gray-900">
               <div className="container pt-2">
@@ -103,24 +107,27 @@ class GiaVe extends Component {
           <div className="text-center item-center mt-5">
             <div className="container">
               <div className=" mt-5 mb-3">
-                <div className="grid grid-flow-col auto-cols-max">
-                  <div className="flex promotion-title align-items-start ">
+                <div className="md:hidden flex text-xl font-bold  text-white justify-content-center align-items-center mr-2">
+                  <h2 className="uppercase origin-center font-bold">Ưu đãi</h2>
+                </div>
+                <div className="flex">
+                  <div className="md:flex hidden promotion-title align-items-start mr-2">
                     <h2 className="origin-center -rotate-45 ">Ưu đãi</h2>
                   </div>
-                  <div className="flex ">
-                    <div className="max-w-sm promotion-item mr-2 ml-2">
+                  <div className="inline-grid grid-cols-3 gap-1 ml-2">
+                    <div className="promotion-item">
                       <div className="promotion-pic">
-                        <img className="lazyload" src={uudaiHS} alt="" />
+                        <img className="w-auto " src={uudaiHS} alt="" />
                       </div>
                     </div>
-                    <div className="max-w-sm promotion-item mr-2">
+                    <div className="promotion-item ">
                       <div className="promotion-pic">
-                        <img className="lazyload" src={uudaiT3} alt="" />
+                        <img className="w-auto" src={uudaiT3} alt="" />
                       </div>
                     </div>
-                    <div className="max-w-sm promotion-item">
+                    <div className="promotion-item">
                       <div className="promotion-pic">
-                        <img className="lazyload" src={uudaiTV} alt="" />
+                        <img className="w-auto" src={uudaiTV} alt="" />
                       </div>
                     </div>
                   </div>

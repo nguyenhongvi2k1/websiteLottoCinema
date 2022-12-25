@@ -304,14 +304,12 @@ class ChooseChair extends Component {
     if (this.state.seatReserved.indexOf(seat) > -1) {
       this.setState({
         seatAvailable: this.state.seatAvailable.concat(seat),
-        seatReserved: this.state.seatReserved.filter((res) => res != seat),
-        //seatChoosed: this.state.seatChoosed.filter(res => res != seat)
+        seatReserved: this.state.seatReserved.filter((res) => res !== seat),
       });
     } else {
       this.setState({
         seatReserved: this.state.seatReserved.concat(seat),
-        //seatChoosed: this.state.seatChoosed.concat(seat),
-        seatAvailable: this.state.seatAvailable.filter((res) => res != seat),
+        seatAvailable: this.state.seatAvailable.filter((res) => res !== seat),
       });
     }
   }
@@ -360,64 +358,76 @@ class ChooseChair extends Component {
               <div>
                 <div className=" flex">
                   <span className="text-white uppercase">Tên phim:</span>
-                  <p className="text-2xl font-bold text-orange-500 ml-5 uppercase">
+                  <p className="md:text-2xl text-xl font-bold text-orange-500 ml-5 uppercase">
                     {showtime?.fk_movie?.title}
                   </p>
                 </div>
-                <div className="grid grid-cols-4 text-gray-200 bg-gray-900">
-                  <div className="border border-1 w-auto bg-gray-900">
-                    <p className="text-base font-sans">Suất chiếu</p>
-                    <p className="text-center font-semibold">
-                      {showtime?.fk_dayshowtimes?.fk_showtime?.time}
-                    </p>
-                  </div>
-                  <div className="border border-1 bg-gray-900">
-                    <p className="text-base">Ngày</p>
-                    <p className="text-center font-semibold">
-                      {showtime?.fk_dayshowtimes?.day_showtime}
-                    </p>
-                  </div>
-                  <div className="border border-1 bg-gray-900">
-                    <p className="text-base">Số lượng</p>
-                    <p className="text-center font-semibold">
-                      <span>
-                        {queryString.parse(this.state.menu).quantity_ticket}
-                      </span>
-                      <span> vé</span>
-                    </p>
-                  </div>
+                <table className="border-collapse border border-slate-400 w-100">
+                  <thead>
+                    <tr>
+                      <th className="border border-slate-300 text-center  text-base font-sans text-gray-200 bg-gray-900">
+                        Suất chiếu
+                      </th>
+                      <th className="border border-slate-300 text-center  text-base font-sans text-gray-200 bg-gray-900">
+                        Ngày
+                      </th>
+                      <th className="border border-slate-300 text-center  text-base font-sans text-gray-200 bg-gray-900">
+                        Số lượng
+                      </th>
+                      <th className="border border-slate-300 text-center text-base font-sans text-gray-200 bg-gray-900">
+                        Tổng số tiền
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border border-slate-300 text-center text-center font-serif text-gray-200 bg-gray-900">
+                        {showtime?.fk_dayshowtimes?.fk_showtime?.time}
+                      </td>
+                      <td className="border border-slate-300 text-center text-center font-serif text-gray-200 bg-gray-900">
+                        {showtime?.fk_dayshowtimes?.day_showtime}
+                      </td>
+                      <td className="border border-slate-300 text-center text-center font-serif text-gray-200 bg-gray-900">
+                        <span>
+                          {queryString.parse(this.state.menu).quantity_ticket}
+                        </span>
+                        <span> vé</span>
+                      </td>
+                      <td className="border border-slate-300 text-center text-center font-serif text-gray-200 bg-gray-900">
+                        <span>
+                          {queryString.parse(this.state.menu).summary}
+                        </span>
 
-                  <div className="border border-1 w-48 min-w-full ">
-                    <p className="text-base">Tổng số tiền</p>
-                    <p className="text-center font-semibold">
-                      <span>{queryString.parse(this.state.menu).summary}</span>
-                      <sup>đ</sup>
-                    </p>
-                  </div>
-                  <div className="border border-1 text-center">
-                    <p>Số ghế</p>
-                  </div>
-                  <div className="col-span-3 border border-1">
-                    <p className="text-align-left">
-                      {/* {queryString.parse(this.state.menu)?.chair} */}
-                    </p>
-                  </div>
-                </div>
+                        <sup>đ</sup>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-slate-300 text-center text-center font-sans text-gray-200 bg-gray-900">
+                        Số ghế
+                      </td>
+                      <span className="text-center text-center font-serif text-gray-200 bg-gray-900"></span>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
           <div className="order-content">
-            <div className="flex justify-content-center">
-              <div className="w-50 cinema-name p-2 my-2 rounded-r-full rounded-l-full">
-                <h2>Lotto Cinema</h2>
+            <div className="flex  justify-content-center">
+              <div className="flex justify-content-center w-75 cinema-name p-2 my-2 rounded-r-full rounded-l-full">
+                <h2 className="lg:text-3xl md:text-2xl text-xl mb-0">
+                  Lotto Cinema
+                </h2>
               </div>
             </div>
             <div className="text-center">
-              <div className="flex justify-content-center">
-                <div className=" bg-gray-50 px-5 rounded-lg">
+              <div className="flex justify-content-center w-100">
+                <div className=" bg-gray-50 md:px-5 px-0 rounded-lg">
                   <div className="flex justify-content-center ">
                     <div className="w-50 p-2 my-2">
-                      <h3 className="cinema-title">Màn hình</h3>
+                      <h3 className="cinema-title text-base md:text-xl">
+                        Màn hình
+                      </h3>
                     </div>
                   </div>
                   <div className="cinema-wrap ">
@@ -427,12 +437,12 @@ class ChooseChair extends Component {
                           className={
                             this.state.seatChoosed.indexOf(this.state.seat[0]) >
                             -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8  h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[0]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[0]}
                           onClick={
@@ -447,12 +457,12 @@ class ChooseChair extends Component {
                           className={
                             this.state.seatChoosed.indexOf(this.state.seat[1]) >
                             -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center w-8"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[1]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[1]}
                           onClick={
@@ -467,12 +477,12 @@ class ChooseChair extends Component {
                           className={
                             this.state.seatChoosed.indexOf(this.state.seat[2]) >
                             -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[2]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[2]}
                           onClick={
@@ -487,12 +497,12 @@ class ChooseChair extends Component {
                           className={
                             this.state.seatChoosed.indexOf(this.state.seat[3]) >
                             -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[3]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[3]}
                           onClick={
@@ -507,12 +517,12 @@ class ChooseChair extends Component {
                           className={
                             this.state.seatChoosed.indexOf(this.state.seat[4]) >
                             -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[4]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[4]}
                           onClick={
@@ -527,12 +537,12 @@ class ChooseChair extends Component {
                           className={
                             this.state.seatChoosed.indexOf(this.state.seat[5]) >
                             -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[5]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[5]}
                           onClick={
@@ -547,12 +557,12 @@ class ChooseChair extends Component {
                           className={
                             this.state.seatChoosed.indexOf(this.state.seat[6]) >
                             -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[6]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[6]}
                           onClick={
@@ -567,12 +577,12 @@ class ChooseChair extends Component {
                           className={
                             this.state.seatChoosed.indexOf(this.state.seat[7]) >
                             -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[7]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[7]}
                           onClick={
@@ -587,12 +597,12 @@ class ChooseChair extends Component {
                           className={
                             this.state.seatChoosed.indexOf(this.state.seat[8]) >
                             -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[8]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[8]}
                           onClick={
@@ -607,12 +617,12 @@ class ChooseChair extends Component {
                           className={
                             this.state.seatChoosed.indexOf(this.state.seat[9]) >
                             -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[9]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[9]}
                           onClick={
@@ -628,12 +638,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[10]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[10]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[10]}
                           onClick={
@@ -649,12 +659,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[11]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[11]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[11]}
                           onClick={
@@ -671,12 +681,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[12]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[12]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[12]}
                           onClick={
@@ -692,12 +702,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[13]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[13]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[13]}
                           onClick={
@@ -713,12 +723,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[14]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[14]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[14]}
                           onClick={
@@ -734,12 +744,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[15]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[15]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[15]}
                           onClick={
@@ -755,12 +765,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[16]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[16]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[16]}
                           onClick={
@@ -776,12 +786,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[17]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[17]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[17]}
                           onClick={
@@ -797,12 +807,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[18]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[18]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[18]}
                           onClick={
@@ -818,12 +828,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[19]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[19]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[19]}
                           onClick={
@@ -839,12 +849,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[20]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[20]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[20]}
                           onClick={
@@ -860,12 +870,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[21]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[21]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[21]}
                           onClick={
@@ -881,12 +891,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[22]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[22]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[22]}
                           onClick={
@@ -902,12 +912,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[23]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[23]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[23]}
                           onClick={
@@ -924,12 +934,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[24]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[24]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[24]}
                           onClick={
@@ -945,12 +955,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[25]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[25]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[25]}
                           onClick={
@@ -966,12 +976,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[26]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[26]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[26]}
                           onClick={
@@ -987,12 +997,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[27]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[27]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[27]}
                           onClick={
@@ -1008,12 +1018,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[28]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[28]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[28]}
                           onClick={
@@ -1029,12 +1039,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[29]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[29]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[29]}
                           onClick={
@@ -1050,12 +1060,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[30]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[30]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[30]}
                           onClick={
@@ -1071,12 +1081,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[31]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[31]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[31]}
                           onClick={
@@ -1092,12 +1102,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[32]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[32]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[32]}
                           onClick={
@@ -1113,12 +1123,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[33]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[33]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[33]}
                           onClick={
@@ -1134,12 +1144,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[34]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[34]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[34]}
                           onClick={
@@ -1155,12 +1165,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[35]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[35]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[35]}
                           onClick={
@@ -1177,12 +1187,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[36]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[36]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[36]}
                           onClick={
@@ -1198,12 +1208,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[37]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[37]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[37]}
                           onClick={
@@ -1219,12 +1229,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[38]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[38]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[38]}
                           onClick={
@@ -1240,12 +1250,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[39]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[39]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[39]}
                           onClick={
@@ -1261,12 +1271,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[40]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[40]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[40]}
                           onClick={
@@ -1282,12 +1292,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[41]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[41]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[41]}
                           onClick={
@@ -1303,12 +1313,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[42]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[42]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[42]}
                           onClick={
@@ -1324,12 +1334,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[43]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[43]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[43]}
                           onClick={
@@ -1345,12 +1355,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[44]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[44]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[44]}
                           onClick={
@@ -1366,12 +1376,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[45]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[45]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[45]}
                           onClick={
@@ -1387,12 +1397,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[46]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[46]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[46]}
                           onClick={
@@ -1408,12 +1418,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[47]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[47]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[47]}
                           onClick={
@@ -1430,12 +1440,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[48]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[48]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[48]}
                           onClick={
@@ -1451,12 +1461,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[49]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[49]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[49]}
                           onClick={
@@ -1472,12 +1482,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[50]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[50]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[50]}
                           onClick={
@@ -1493,12 +1503,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[51]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[51]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[51]}
                           onClick={
@@ -1514,12 +1524,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[52]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[52]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[52]}
                           onClick={
@@ -1535,12 +1545,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[53]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[53]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[53]}
                           onClick={
@@ -1556,12 +1566,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[54]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[54]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[54]}
                           onClick={
@@ -1577,12 +1587,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[55]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[55]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[55]}
                           onClick={
@@ -1598,12 +1608,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[56]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[56]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[56]}
                           onClick={
@@ -1619,12 +1629,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[57]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[57]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[57]}
                           onClick={
@@ -1640,12 +1650,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[58]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[58]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[58]}
                           onClick={
@@ -1661,12 +1671,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[59]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[59]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[59]}
                           onClick={
@@ -1683,12 +1693,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[60]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[60]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[60]}
                           onClick={
@@ -1705,12 +1715,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[61]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[61]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[61]}
                           onClick={
@@ -1727,12 +1737,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[62]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[62]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[62]}
                           onClick={
@@ -1749,12 +1759,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[63]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[63]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[63]}
                           onClick={
@@ -1770,12 +1780,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[64]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[64]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[64]}
                           onClick={
@@ -1792,12 +1802,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[65]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[65]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[65]}
                           onClick={
@@ -1814,12 +1824,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[66]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[66]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[66]}
                           onClick={
@@ -1836,12 +1846,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[67]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[67]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[67]}
                           onClick={
@@ -1858,12 +1868,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[68]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[68]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[68]}
                           onClick={
@@ -1879,12 +1889,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[69]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[69]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[69]}
                           onClick={
@@ -1900,12 +1910,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[70]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[70]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[70]}
                           onClick={
@@ -1921,12 +1931,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[71]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[71]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[71]}
                           onClick={
@@ -1943,12 +1953,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[72]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[72]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[72]}
                           onClick={
@@ -1965,12 +1975,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[73]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[73]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[73]}
                           onClick={
@@ -1986,12 +1996,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[74]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[74]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[74]}
                           onClick={
@@ -2007,12 +2017,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[75]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[75]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[75]}
                           onClick={
@@ -2029,12 +2039,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[76]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[76]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[76]}
                           onClick={
@@ -2050,12 +2060,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[77]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[77]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[77]}
                           onClick={
@@ -2072,12 +2082,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[78]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[78]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[78]}
                           onClick={
@@ -2093,12 +2103,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[79]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[79]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[79]}
                           onClick={
@@ -2114,12 +2124,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[80]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[80]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[80]}
                           onClick={
@@ -2135,12 +2145,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[81]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[81]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[81]}
                           onClick={
@@ -2156,12 +2166,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[82]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[82]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[82]}
                           onClick={
@@ -2177,12 +2187,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[83]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[83]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[83]}
                           onClick={
@@ -2199,12 +2209,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[84]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[84]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[84]}
                           onClick={
@@ -2221,12 +2231,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[85]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[85]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[85]}
                           onClick={
@@ -2243,12 +2253,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[86]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[86]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[86]}
                           onClick={
@@ -2265,12 +2275,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[87]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[87]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[87]}
                           onClick={
@@ -2287,12 +2297,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[88]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[88]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[88]}
                           onClick={
@@ -2309,12 +2319,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[89]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[89]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[89]}
                           onClick={
@@ -2330,12 +2340,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[90]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[90]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[90]}
                           onClick={
@@ -2352,12 +2362,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[91]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[91]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[91]}
                           onClick={
@@ -2373,12 +2383,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[92]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[92]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[92]}
                           onClick={
@@ -2394,12 +2404,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[93]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[93]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[93]}
                           onClick={
@@ -2416,12 +2426,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[94]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[94]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[94]}
                           onClick={
@@ -2438,12 +2448,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[95]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[95]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[95]}
                           onClick={
@@ -2460,12 +2470,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[96]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[96]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[96]}
                           onClick={
@@ -2481,12 +2491,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[97]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[97]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[97]}
                           onClick={
@@ -2503,12 +2513,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[98]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[98]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[98]}
                           onClick={
@@ -2524,12 +2534,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[99]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[99]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[99]}
                           onClick={
@@ -2546,12 +2556,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[100]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[100]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[100]}
                           onClick={
@@ -2568,12 +2578,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[101]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[101]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[101]}
                           onClick={
@@ -2589,12 +2599,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[102]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[102]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[102]}
                           onClick={
@@ -2611,12 +2621,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[103]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[103]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[103]}
                           onClick={
@@ -2633,12 +2643,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[104]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[104]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[104]}
                           onClick={
@@ -2655,12 +2665,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[105]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[105]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[105]}
                           onClick={
@@ -2676,12 +2686,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[106]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[106]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[106]}
                           onClick={
@@ -2697,12 +2707,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[107]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[107]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[107]}
                           onClick={
@@ -2719,12 +2729,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[108]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[108]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[108]}
                           onClick={
@@ -2741,12 +2751,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[109]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[109]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[109]}
                           onClick={
@@ -2763,12 +2773,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[110]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[110]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[110]}
                           onClick={
@@ -2785,12 +2795,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[111]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[111]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[111]}
                           onClick={
@@ -2806,12 +2816,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[112]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[112]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[112]}
                           onClick={
@@ -2828,12 +2838,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[113]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[113]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[113]}
                           onClick={
@@ -2850,12 +2860,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[114]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[114]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[114]}
                           onClick={
@@ -2872,12 +2882,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[115]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[115]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[115]}
                           onClick={
@@ -2894,12 +2904,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[116]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[116]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[116]}
                           onClick={
@@ -2916,12 +2926,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[117]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[117]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[117]}
                           onClick={
@@ -2937,12 +2947,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[118]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[118]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[118]}
                           onClick={
@@ -2959,12 +2969,12 @@ class ChooseChair extends Component {
                             this.state.seatChoosed.indexOf(
                               this.state.seat[119]
                             ) > -1
-                              ? "singleChooosed"
+                              ? "singleChooosed md:w-11 w-8 h-9 flex justify-content-center"
                               : this.state.seatReserved.indexOf(
                                   this.state.seat[119]
                                 ) > -1
-                              ? "singleChooose"
-                              : "single"
+                              ? "singleChooose md:w-11 w-8 h-9 flex justify-content-center"
+                              : "single md:w-11 w-8 h-9 flex justify-content-center"
                           }
                           key={this.state.seat[119]}
                           onClick={
@@ -2979,7 +2989,7 @@ class ChooseChair extends Component {
                     </div>
                   </div>
                   <ul className="cinema-note">
-                    <li className="single">Ghế thường</li>
+                    <li className="single ">Ghế thường</li>
                     <li className="choosing">Ghế đang chọn</li>
                     <li className="busy">Ghế đã chọn</li>
                     <li className="road">Lối đi</li>

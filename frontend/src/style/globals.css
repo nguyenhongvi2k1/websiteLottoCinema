@@ -46,6 +46,20 @@ h1 > a {
   font-family: "Denk One";
 }
 
+.hamburger {
+  border: 0;
+  height: 40px;
+  width: 40px;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: #283b8b;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+.hamburger:hover {
+  background-color: #0b2ebb;
+}
+
 .slide-slidebox {
   position: relative;
   user-select: none;
@@ -113,7 +127,6 @@ h1 > a {
 .movie-txt h3 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 16px;
   text-transform: uppercase;
   color: white;
   text-align: center;
@@ -144,10 +157,8 @@ h1 > a {
   text-decoration: none;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
   display: -webkit-box;
   max-width: 100%;
-  font-size: 14px;
   -webkit-line-clamp: 7;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -163,7 +174,6 @@ h1 > a {
   color: white;
   background-color: #f18720;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
   padding: 0.1rem 1rem;
   border-radius: 1rem;
   margin-top: 1rem;
@@ -176,7 +186,6 @@ h1 > a {
   margin-top: 1rem;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 13px;
   text-align: center;
   text-transform: uppercase;
   color: white;
@@ -216,12 +225,9 @@ h1 > a {
 
 .promotion-item {
   background: rgba(255, 255, 255, 0.2);
-  box-shadow: 7px 7px 0 rgb(0 0 0 / 20%);
   border-radius: 5rem;
   -webkit-border-radius: 3rem 0 3rem 0;
   padding: 1rem;
-  transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
 }
 
 .promotion-pic {
@@ -269,13 +275,11 @@ h1 > a {
 
 .sub-tab li a {
   font-weight: bold;
-  font-size: 30px;
   text-transform: uppercase;
   color: #fff;
   display: inline-block;
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
-  padding: 1rem 2rem;
 }
 
 .film-item.cl-org {
@@ -305,7 +309,6 @@ h1 > a {
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   display: -webkit-box;
-  font-size: 14px;
   -webkit-line-clamp: 8;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -316,7 +319,6 @@ h1 > a {
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   display: -webkit-box;
-  font-size: 14px;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -324,7 +326,6 @@ h1 > a {
 }
 
 .trailler-btn {
-  display: inline-block;
   background: rgba(0, 0, 0, 0.5) url(../assets/img/youtube.png) no-repeat -10px center;
 }
 
@@ -332,7 +333,6 @@ h1 > a {
   font-weight: bold;
   text-transform: uppercase;
   color: #fff;
-  display: inline-block;
   cursor: pointer;
   background-color: #f18720;
 }
@@ -349,16 +349,13 @@ h1 > a {
   display: table-cell;
   vertical-align: middle;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 18px;
 }
 
 .section-title h2 {
   font-weight: bold;
-  font-size: 35px;
   color: #fff;
   text-align: center;
   text-transform: uppercase;
-  line-height: 36px;
   margin-top: 2rem;
 }
 
@@ -380,18 +377,16 @@ h1 > a {
   font-family: Futura, Trebuchet MS, Arial, sans-serif;
   font-weight: bold;
   color: #ededed;
-  font-size: 24px;
   display: table-cell;
   vertical-align: middle;
   text-align: center;
   width: 5rem;
 }
 
-.faq-wrap .ask h3 {
+.faq-wrap .ask p {
   font-family: "Myriad Pro", Myriad, "Liberation Sans", "Nimbus Sans L",
     "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
-  font-size: 20px;
   color: #fff;
   vertical-align: middle;
   text-align: left;
@@ -425,8 +420,6 @@ h1 > a {
 .faq-form .input-text input[type="text"] {
   border-radius: 25px;
   color: #818181;
-  font-size: 16px;
-  line-height: 20px;
   padding: 10px 20px;
   border: 1px solid #fff;
   width: 100%;
@@ -466,8 +459,6 @@ h1 > a {
   border-radius: 25px;
   font-family: "MyriadLight";
   color: #818181;
-  font-size: 18px;
-  line-height: 22px;
   border: 1px solid #fff;
   width: 100%;
   height: 200px;
@@ -488,7 +479,6 @@ h1 > a {
 .input-but input[type="button"] {
   font-family: "Futurab";
   font-weight: normal;
-  font-size: 24px;
   text-transform: uppercase;
   background-color: #f37520;
   color: #fff;
@@ -514,18 +504,14 @@ h1 > a {
 
 .film-item-txt h3 {
   font-weight: bold;
-  font-size: 28px;
   text-transform: uppercase;
-  line-height: 30px;
   color: #fff;
   text-align: left;
   margin-bottom: 10px;
 }
 
 .film-item-txt p {
-  font-size: 16px;
   color: #fff;
-  line-height: 24px;
   text-align: left;
   overflow: hidden;
 }
@@ -542,17 +528,14 @@ h1 > a {
   width: 100px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: lighter;
-  font-size: 18px;
   color: #fff;
 }
 
 .l-value {
   display: table-cell;
-  line-height: 24px;
   background-color: #fff;
   font-family: "Helvetica Neue", sans-serif;
   font-weight: bold;
-  font-size: 18px;
   color: #000;
   padding: 0.5rem;
 }
@@ -598,9 +581,7 @@ h1 > a {
   vertical-align: middle;
   background-color: #450828;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
   color: #fff;
-  line-height: 18px;
 }
 
 .seat-number {
@@ -623,7 +604,6 @@ h1 > a {
 .order-clock .title {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: normal;
-  font-size: 20px;
   color: #fff;
   display: block;
   text-align: center;
@@ -643,7 +623,7 @@ h1 > a {
   text-align: center;
   z-index: 999;
   margin: 0 auto 40px auto;
-  padding: 30px 50px;
+  padding: 20px 30px;
   max-width: 900px;
 }
 
@@ -651,8 +631,6 @@ h1 > a {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: normal;
   font-style: italic;
-  font-size: 22px;
-  line-height: 1.2;
   text-align: center;
   color: #707070;
 }
@@ -680,8 +658,6 @@ h1 > a {
 
 .confirm-cus p {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  line-height: 1.6;
   margin: 5px 0;
   color: #666;
 }
@@ -718,16 +694,12 @@ h1 > a {
 .confirm-film-text h3 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 16px;
   text-transform: uppercase;
   color: #666;
-  line-height: 1.4;
 }
 
 .confirm-film-text p {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  line-height: 1.6;
   margin: 10px 0;
   color: #666;
 }
@@ -768,8 +740,6 @@ h1 > a {
   text-align: left;
   padding: 5px 10px 5px 0;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  line-height: 1.6;
   color: #666;
   padding: 10px 20px;
 }
@@ -780,15 +750,12 @@ h1 > a {
   max-width: 40%;
   text-align: right;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  line-height: 1.6;
   color: #444;
   font-weight: bold;
   padding: 10px 20px;
 }
 
 .confirm-total .confirm-mark {
-  font-size: 18px;
   text-transform: uppercase;
   color: #000;
   font-weight: bold;
@@ -819,20 +786,18 @@ h1 > a {
   max-width: 900px;
   background: #fff;
   box-shadow: 10px 10px 0 rgb(0 0 0 / 10%), 0 0 30px rgb(0 0 0 / 30%) inset;
-  padding: 40px 0;
   border-radius: 50px 0 50px 0;
   border-radius: 50px 0 50px 0;
   text-align: center;
   z-index: 999;
   margin: 0 auto 70px auto;
-  padding: 30px 50px;
+  padding: 20px 30px;
 }
 
 .final-form .input-text {
   margin: 0 0 20px 0;
   box-shadow: none;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
   color: #131313;
   line-height: 20px;
 }
@@ -847,7 +812,6 @@ h1 > a {
 
 .final-form .input-text > h2 {
   text-transform: uppercase;
-  font-size: 20px;
 }
 
 .terms_condition_paypal {
@@ -870,7 +834,6 @@ h1 > a {
   display: block;
   position: relative;
   cursor: pointer;
-  font-size: 18px;
   user-select: none;
   padding-left: 30px;
   margin-bottom: 20px;
@@ -928,7 +891,6 @@ h1 > a {
   text-align: left;
   position: relative;
   cursor: pointer;
-  font-size: 16px;
   user-select: none;
   padding-left: 40px;
 }
@@ -1013,7 +975,6 @@ h1 > a {
 }
 
 .ticket-wrap table {
-  width: 100%;
   border-spacing: 0;
 }
 
@@ -1028,10 +989,9 @@ table thead tr tbody span {
   background-color: #0a313c;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 18px;
   text-transform: uppercase;
   color: #fff;
-  padding: 1.5rem;
+  padding: 1rem;
   box-shadow: 10px 10px 0 rgb(0 0 0 / 10%);
   border-right: 2px solid #ccc;
 }
@@ -1043,7 +1003,6 @@ table thead tr tbody span {
 .ticket-wrap table td {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: normal;
-  font-size: 22px;
   padding: 1rem;
   color: #131313;
   vertical-align: middle;
@@ -1076,13 +1035,12 @@ table thead tr tbody span {
 .ticket-wrap table td.ticket-total {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: normal;
-  font-size: 22px;
 }
 
 .minus {
   display: inline-block;
-  width: 30px;
-  height: 30px;
+  width: 0.5rem;
+  height: 0.5rem;
   background: url(../assets/img/icon-minus.png) no-repeat center center;
   vertical-align: middle;
   text-indent: 9999px;
@@ -1096,13 +1054,13 @@ table thead tr tbody span {
   border-radius: 0;
   outline: none;
   text-align: center;
-  font-size: 20px;
+  padding: 0.2rem;
 }
 
 .add {
   display: inline-block;
-  width: 30px;
-  height: 30px;
+  width: 0.5rem;
+  height: 0.5rem;
   background: url(../assets/img/icon-add.png) no-repeat center center;
   vertical-align: middle;
   text-indent: 9999px;
@@ -1110,21 +1068,17 @@ table thead tr tbody span {
 }
 
 .ticket-wrap table td sup {
-  margin-left: 3px;
   border-bottom: 1px solid #131313;
 }
 
 sup {
   text-decoration: none;
-  bottom: 5px;
-  font-size: 70%;
   vertical-align: baseline;
   font-weight: bold;
   position: relative;
 }
 
 .ticket-cal {
-  width: 100%;
   background-color: #fff;
   box-shadow: 10px 10px 0 rgb(0 0 0 / 10%);
   margin-bottom: 2px;
@@ -1134,7 +1088,6 @@ sup {
   display: inline-block;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 22px;
   text-transform: uppercase;
   color: #acacac;
 }
@@ -1145,19 +1098,12 @@ sup {
 
 .ticket-cal li span {
   color: #5f5f5f;
-  margin-left: 0.5rem;
 }
 
 .ticket-cal li mark {
   background-color: transparent;
   color: #5f5f5f;
 }
-
-/* mark {
-  text-decoration: none;
-  font-weight: bold;
-  vertical-align: baseline;
-} */
 
 .ticket-cal li sup {
   text-transform: lowercase;
@@ -1181,7 +1127,6 @@ sup {
 .input-but input[type="button"] {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 24px;
   text-transform: uppercase;
   color: #fff;
   border-radius: 30px 30px 30px 0;
@@ -1208,7 +1153,6 @@ sup {
 }
 
 .cinema-name {
-  width: 100%;
   background-color: #0c3434;
   text-align: center;
 }
@@ -1216,7 +1160,6 @@ sup {
 .cinema-name h2 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 28px;
   color: #fff;
   text-transform: uppercase;
 }
@@ -1230,7 +1173,6 @@ sup {
 .cinema-title {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 24px;
   color: #fff;
   display: block;
   background-color: #391313;
@@ -1250,8 +1192,6 @@ sup {
 }
 
 .seat-container .single {
-  width: 43px;
-  height: 46px;
   padding: 12px;
   text-align: center;
   vertical-align: middle;
@@ -1268,8 +1208,6 @@ sup {
 }
 
 .seat-container .singleChooose {
-  width: 43px;
-  height: 46px;
   padding: 12px;
   text-align: center;
   vertical-align: middle;
@@ -1284,8 +1222,6 @@ sup {
   -webkit-transition: all 0.3s ease-in-out;
 }
 .seat-container .singleChooosed {
-  width: 43px;
-  height: 46px;
   padding: 12px;
   text-align: center;
   vertical-align: middle;
@@ -1316,7 +1252,6 @@ sup {
   line-height: 46px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 16px;
   color: #434343;
   margin: 0 4px;
 }
@@ -1349,7 +1284,7 @@ sup {
   position: absolute;
   left: 0;
   top: 10px;
-  background: #0c172e;
+  background: #cdcfd5;
 }
 
 .cinema-btn {
@@ -1365,7 +1300,6 @@ sup {
 .cinema-btn input[type="button"] {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 22px;
   text-transform: uppercase;
   background: #203f48;
   color: #fff;
@@ -1418,9 +1352,7 @@ sup {
   background-color: #125c5d;
   font-family: "Arial";
   font-weight: bold;
-  font-size: 24px;
   padding: 1rem;
-  line-height: 24px;
   text-transform: uppercase;
   color: #fff;
 }
@@ -1446,16 +1378,12 @@ sup {
 .combo-text h3 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
   color: #000;
   text-transform: uppercase;
 }
 
 .combo-price {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
   color: #08383a;
   text-transform: uppercase;
 }
@@ -1517,7 +1445,6 @@ sup {
   border: 0;
   border-radius: 0;
   text-align: center;
-  font-size: 15px;
 }
 
 .combo-total {
@@ -1532,7 +1459,6 @@ sup {
   display: block;
   width: auto;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 18px;
   color: #062b30;
   font-weight: bold;
 }
@@ -1567,7 +1493,6 @@ sup {
   background-color: #01191a;
   font-family: "Arial";
   font-weight: bold;
-  font-size: 22px;
   text-transform: uppercase;
   color: #fff;
   transition: all 0.3s ease-in-out;

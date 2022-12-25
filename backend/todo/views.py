@@ -1,5 +1,5 @@
 import datetime
-from rest_framework import viewsets
+from rest_framework import viewsets,status
 from django.shortcuts import render
 from rest_framework.response import Response
 from .serializers import UsernameSerializer, MovieSerializer, FoodSerializer, PremiereSerializer, DayShowtimeSerializer, ShowtimeSerializer, OrderTicketSerializer, QuestionSerializer
@@ -18,9 +18,12 @@ def register(request):
     password = request.data.get("password")
     phone = request.data.get("phone")
     birthday = request.data.get("birthday")
-    user = Username(name=name, email=email, password=password, phone=phone, birthday=birthday)
-    user.save()
-    return Response(status=201)
+    if Username.objects.filter(email=email).exists():
+        return Response("Item already exists", status.HTTP_400_BAD_REQUEST)
+    else:
+        user = Username(name=name, email=email, password=password, phone=phone, birthday=birthday)
+        user.save()
+        return Response(status=201)
 
 
 @api_view(["POST"])

@@ -43,16 +43,7 @@ class Combo extends Component {
     window.location.href = `/choose-chair?id_movie=${id_movie}&id_dayshowtime=${id_dayshowtime}&id_time=${id_time}&quantity_ticket=${quantity_ticket}&summary=${summary}&chair=${chair}`;
   }
 
-  onSubmit(
-    id_movie,
-    id_dayshowtime,
-    id_time,
-    quantity_ticket,
-    summary,
-    chair,
-    id_food,
-    food
-  ) {
+  onSubmit(id_movie, id_dayshowtime, id_time, quantity_ticket, summary, chair) {
     if (this.state.combo_1 !== 0) {
       window.location.href = `/choose-chair?id_movie=${id_movie}&id_dayshowtime=${id_dayshowtime}&id_time=${id_time}&quantity_ticket=${quantity_ticket}&summary=${summary}&chair=${chair}&id_food=${this.state.combo[0].id}&food=${this.state.combo_1}`;
     } else if (this.state.combo_2 !== 0) {
@@ -183,70 +174,84 @@ class Combo extends Component {
               <div>
                 <div className="flex">
                   <span className="text-white uppercase">Tên phim:</span>
-                  <p className="text-2xl font-bold text-orange-500 ml-5 uppercase">
+                  <p className="md:text-2xl text-xl font-bold text-orange-500 ml-5 uppercase">
                     {showtime?.fk_movie?.title}
                   </p>
                 </div>
-                <div className="grid grid-cols-4 text-gray-200 bg-gray-900">
-                  <div className="border border-1 w-auto bg-gray-900">
-                    <p className="text-base font-sans">Suất chiếu</p>
-                    <p className="text-center font-semibold">
-                      {showtime?.fk_dayshowtimes?.fk_showtime?.time}
-                    </p>
-                  </div>
-                  <div className="border border-1 bg-gray-900">
-                    <p className="text-base">Ngày</p>
-                    <p className="text-center font-semibold">
-                      {showtime?.fk_dayshowtimes?.day_showtime}
-                    </p>
-                  </div>
-                  <div className="border border-1 bg-gray-900">
-                    <p className="text-base">Số lượng</p>
-                    <p className="text-center font-semibold">
-                      <span>
-                        {queryString.parse(this.state.menu).quantity_ticket}
-                      </span>
-                      <span> vé</span>
-                    </p>
-                  </div>
+                <table className="border-collapse border border-slate-400 w-100">
+                  <thead>
+                    <tr>
+                      <th className="border border-slate-300 text-center  text-base font-sans text-gray-200 bg-gray-900">
+                        Suất chiếu
+                      </th>
+                      <th className="border border-slate-300 text-center  text-base font-sans text-gray-200 bg-gray-900">
+                        Ngày
+                      </th>
+                      <th className="border border-slate-300 text-center  text-base font-sans text-gray-200 bg-gray-900">
+                        Số lượng
+                      </th>
+                      <th className="border border-slate-300 text-center text-base font-sans text-gray-200 bg-gray-900">
+                        Tổng số tiền
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border border-slate-300 text-center text-center font-serif text-gray-200 bg-gray-900">
+                        {showtime?.fk_dayshowtimes?.fk_showtime?.time}
+                      </td>
+                      <td className="border border-slate-300 text-center text-center font-serif text-gray-200 bg-gray-900">
+                        {showtime?.fk_dayshowtimes?.day_showtime}
+                      </td>
+                      <td className="border border-slate-300 text-center text-center font-serif text-gray-200 bg-gray-900">
+                        <span>
+                          {queryString.parse(this.state.menu).quantity_ticket}
+                        </span>
+                        <span> vé</span>
+                      </td>
+                      <td className="border border-slate-300 text-center text-center font-serif text-gray-200 bg-gray-900">
+                        <span>
+                          {queryString.parse(this.state.menu).summary}
+                        </span>
 
-                  <div className="border border-1 w-48 min-w-full ">
-                    <p className="text-base">Tổng số tiền</p>
-                    <p className="text-center font-semibold">
-                      <span>{queryString.parse(this.state.menu).summary}</span>
-                      <sup>đ</sup>
-                    </p>
-                  </div>
-                  <div className="border border-1 text-center">
-                    <p>Số ghế</p>
-                  </div>
-                  <div className="col-span-3 border border-1">
-                    <p className="text-align-left"></p>
-                  </div>
-                </div>
+                        <sup>đ</sup>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-slate-300 text-center text-center font-sans text-gray-200 bg-gray-900">
+                        Số ghế
+                      </td>
+                      <span className="text-center text-center font-serif text-gray-200 bg-gray-900"></span>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
           <div className="order-content">
-            <div className="flex justify-content-center">
-              <div className="w-50 cinema-name p-2 my-2 rounded-r-full rounded-l-full">
-                <h2>Lotto Cinema</h2>
+            <div className="flex  justify-content-center">
+              <div className="flex justify-content-center w-75 cinema-name p-2 my-2 rounded-r-full rounded-l-full">
+                <h2 className="lg:text-3xl md:text-2xl text-xl mb-0">
+                  Lotto Cinema
+                </h2>
               </div>
             </div>
             <div className="text-center">
               <div className="flex justify-content-center">
-                <div className="w-75">
+                <div className="md:w-3/4 w-full">
                   <div className="cons-content ">
                     <div className="cons-box rounded-lg">
                       <ul className="cons-box-list rounded-lg">
                         <li data-group="217">
-                          <h2>COMBO</h2>
+                          <h2 className="md:text-xl text-lg">COMBO</h2>
                           <div className="combo-item">
                             <div className="combo-text">
-                              <h3>{this.state.combo[0]?.name}</h3>
-                              <div className="combo-price">
+                              <h3 className="md:text-lg text-base">
+                                {this.state.combo[0]?.name}
+                              </h3>
+                              <div className="combo-price  md:text-base text-sm">
                                 giá:
-                                <span className="text-price">
+                                <span className="text-price md:text-base text-sm">
                                   {this.state.combo[0]?.price}
                                 </span>
                                 <sup>đ</sup>
@@ -254,13 +259,13 @@ class Combo extends Component {
                             </div>
 
                             <div className="combo-input">
-                              <a
+                              <p
                                 type="button"
                                 onClick={this.handleSubCombo_1}
                                 className="cmb-minus"
                               >
                                 -
-                              </a>
+                              </p>
                               <input
                                 data-id="1101596"
                                 data-price="105000"
@@ -269,16 +274,16 @@ class Combo extends Component {
                                 value={this.state.combo_1}
                                 size="3"
                               />
-                              <a
+                              <p
                                 type="button"
                                 onClick={this.handleAddCombo_1}
                                 className="cmb-add"
                               >
                                 +
-                              </a>
+                              </p>
                             </div>
                             <div className="combo-total">
-                              <div className="combo-total-outer">
+                              <div className="combo-total-outer md:text-lg text-base ">
                                 <span>{this.state.sum_1}</span>
                                 <sup>đ</sup>
                               </div>
@@ -286,23 +291,25 @@ class Combo extends Component {
                           </div>
                           <div className="combo-item">
                             <div className="combo-text">
-                              <h3>{this.state.combo[1]?.name}</h3>
-                              <div className="combo-price">
+                              <h3 className="md:text-lg text-base">
+                                {this.state.combo[1]?.name}
+                              </h3>
+                              <div className="combo-price  md:text-base text-sm">
                                 giá:
-                                <span className="text-price">
+                                <span className="text-price md:text-base text-sm">
                                   {this.state.combo[1]?.price}
                                 </span>
                                 <sup>đ</sup>
                               </div>
                             </div>
                             <div className="combo-input">
-                              <a
+                              <p
                                 type="button"
                                 onClick={this.handleSubCombo_2}
                                 className="cmb-minus"
                               >
                                 -
-                              </a>
+                              </p>
                               <input
                                 data-id="1101596"
                                 data-price="105000"
@@ -311,16 +318,16 @@ class Combo extends Component {
                                 value={this.state.combo_2}
                                 size="3"
                               />
-                              <a
+                              <p
                                 type="button"
                                 onClick={this.handleAddCombo_2}
                                 className="cmb-add"
                               >
                                 +
-                              </a>
+                              </p>
                             </div>
                             <div className="combo-total">
-                              <div className="combo-total-outer">
+                              <div className="combo-total-outer md:text-lg text-base">
                                 <span>{this.state.sum_2}</span>
                                 <sup>đ</sup>
                               </div>
@@ -329,26 +336,28 @@ class Combo extends Component {
                         </li>
 
                         <li data-group="80">
-                          <h2>BẮP RANG</h2>
+                          <h2 className="md:text-xl text-lg">BẮP RANG</h2>
                           <div className="combo-item">
                             <div className="combo-text">
-                              <h3>{this.state.combo[2]?.name}</h3>
-                              <div className="combo-price">
+                              <h3 className="md:text-lg text-base">
+                                {this.state.combo[2]?.name}
+                              </h3>
+                              <div className="combo-price  md:text-base text-sm">
                                 giá:
-                                <span className="text-price">
+                                <span className="text-price md:text-base text-sm">
                                   {this.state.combo[2]?.price}
                                 </span>
                                 <sup>đ</sup>
                               </div>
                             </div>
                             <div className="combo-input">
-                              <a
+                              <p
                                 type="button"
                                 onClick={this.handleSubCombo_3}
                                 className="cmb-minus"
                               >
                                 -
-                              </a>
+                              </p>
                               <input
                                 data-id="1101597"
                                 data-price="199000"
@@ -357,16 +366,16 @@ class Combo extends Component {
                                 value={this.state.combo_3}
                                 size="3"
                               />
-                              <a
+                              <p
                                 type="button"
                                 onClick={this.handleAddCombo_3}
                                 className="cmb-add"
                               >
                                 +
-                              </a>
+                              </p>
                             </div>
                             <div className="combo-total">
-                              <div className="combo-total-outer">
+                              <div className="combo-total-outer md:text-lg text-base">
                                 <span>{this.state.sum_3}</span>
                                 <sup>đ</sup>
                               </div>
@@ -374,23 +383,25 @@ class Combo extends Component {
                           </div>
                           <div className="combo-item">
                             <div className="combo-text">
-                              <h3>{this.state.combo[3]?.name}</h3>
-                              <div className="combo-price">
+                              <h3 className="md:text-lg text-base">
+                                {this.state.combo[3]?.name}
+                              </h3>
+                              <div className="combo-price  md:text-base text-sm">
                                 giá:
-                                <span className="text-price">
+                                <span className="text-price md:text-base text-sm">
                                   {this.state.combo[3]?.price}
                                 </span>
                                 <sup>đ</sup>
                               </div>
                             </div>
                             <div className="combo-input">
-                              <a
+                              <p
                                 type="button"
                                 onClick={this.handleSubCombo_4}
                                 className="cmb-minus"
                               >
                                 -
-                              </a>
+                              </p>
                               <input
                                 data-id="265"
                                 data-price="16000"
@@ -399,16 +410,16 @@ class Combo extends Component {
                                 value={this.state.combo_4}
                                 size="3"
                               />
-                              <a
+                              <p
                                 type="button"
                                 onClick={this.handleAddCombo_4}
                                 className="cmb-add"
                               >
                                 +
-                              </a>
+                              </p>
                             </div>
                             <div className="combo-total">
-                              <div className="combo-total-outer">
+                              <div className="combo-total-outer md:text-lg text-base">
                                 <span>{this.state.sum_4}</span>
                                 <sup>đ</sup>
                               </div>
@@ -417,26 +428,28 @@ class Combo extends Component {
                         </li>
 
                         <li data-group="75">
-                          <h2>NƯỚC ĐÓNG CHAI</h2>
+                          <h2 className="md:text-xl text-lg">NƯỚC ĐÓNG CHAI</h2>
                           <div className="combo-item">
                             <div className="combo-text">
-                              <h3>{this.state.combo[4]?.name}</h3>
-                              <div className="combo-price">
+                              <h3 className="md:text-lg text-base">
+                                {this.state.combo[4]?.name}
+                              </h3>
+                              <div className="combo-price  md:text-base text-sm">
                                 giá:
-                                <span className="text-price">
+                                <span className="text-price md:text-base text-sm">
                                   {this.state.combo[4]?.price}
                                 </span>
                                 <sup>đ</sup>
                               </div>
                             </div>
                             <div className="combo-input">
-                              <a
+                              <p
                                 type="button"
                                 onClick={this.handleSubCombo_5}
                                 className="cmb-minus"
                               >
                                 -
-                              </a>
+                              </p>
                               <input
                                 data-id="265"
                                 data-price="16000"
@@ -445,16 +458,16 @@ class Combo extends Component {
                                 value={this.state.combo_5}
                                 size="3"
                               />
-                              <a
+                              <p
                                 type="button"
                                 onClick={this.handleAddCombo_5}
                                 className="cmb-add"
                               >
                                 +
-                              </a>
+                              </p>
                             </div>
                             <div className="combo-total">
-                              <div className="combo-total-outer">
+                              <div className="combo-total-outer md:text-lg text-base">
                                 <span>{this.state.sum_5}</span>
                                 <sup>đ</sup>
                               </div>
@@ -463,23 +476,25 @@ class Combo extends Component {
 
                           <div className="combo-item">
                             <div className="combo-text">
-                              <h3>{this.state.combo[5]?.name}</h3>
-                              <div className="combo-price">
+                              <h3 className="md:text-lg text-base">
+                                {this.state.combo[5]?.name}
+                              </h3>
+                              <div className="combo-price  md:text-base text-sm">
                                 giá:
-                                <span className="text-price">
+                                <span className="text-price md:text-base text-sm">
                                   {this.state.combo[5]?.price}
                                 </span>
                                 <sup>đ</sup>
                               </div>
                             </div>
                             <div className="combo-input">
-                              <a
+                              <p
                                 type="button"
                                 onClick={this.handleSubCombo_6}
                                 className="cmb-minus"
                               >
                                 -
-                              </a>
+                              </p>
                               <input
                                 data-id="265"
                                 data-price="16000"
@@ -488,16 +503,16 @@ class Combo extends Component {
                                 value={this.state.combo_6}
                                 size="3"
                               />
-                              <a
+                              <p
                                 type="button"
                                 onClick={this.handleAddCombo_6}
                                 className="cmb-add"
                               >
                                 +
-                              </a>
+                              </p>
                             </div>
                             <div className="combo-total">
-                              <div className="combo-total-outer">
+                              <div className="combo-total-outer md:text-lg text-base">
                                 <span>{this.state.sum_6}</span>
                                 <sup>đ</sup>
                               </div>

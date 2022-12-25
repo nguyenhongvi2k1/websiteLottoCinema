@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import "../../style/globals.css";
+import { useLayoutEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import avt from "../../assets/img/man.png";
 import { Modal } from "react-bootstrap";
 import visibilityIcon from "../../assets/svg/visibilityIcon.svg";
 import "bootstrap/dist/css/bootstrap.css";
 import "react-toastify/dist/ReactToastify.css";
+import Nav from "react-bootstrap/Nav";
+import Offcanvas from "react-bootstrap/Offcanvas";
 import { FaFilm, FaHome, FaRegMoneyBillAlt, FaSearch } from "react-icons/fa";
 import {
   BsCalendar,
@@ -15,8 +18,11 @@ import {
 } from "react-icons/bs";
 
 function Header(props) {
+  const div = useRef();
   // console.log(props);
   // const [user, setUser] = useState(props?.user?.response);
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
+  // const [showNav, setShowNav] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -95,6 +101,11 @@ function Header(props) {
       window.location.href = "/";
       toast.success("Chào bạn đã đến với chúng tôi!!!");
     }
+    if (response.status === 400) {
+      toast.warning(
+        "Thông tin của bạn đã được sử dụng. Hãy nhập thông tin mới!!!"
+      );
+    }
   };
   const onSearchChange = (e) => {
     setFormData((prevState) => ({
@@ -109,11 +120,8 @@ function Header(props) {
         props.updateMovieData(data);
       });
   };
-  // notify() {
-  //   toast.success("Chào bạn đã đến với chúng tôi!!!");
-  // }
+
   const isLoggedIn = props?.user?.response != null;
-  // console.log(isLoggedIn);
   let component;
 
   if (isLoggedIn) {
@@ -123,7 +131,7 @@ function Header(props) {
         <div className="ml-3 overflow-hidden flex align-items-center justify-content-center">
           <p
             type="button"
-            className="text-lg font-semibold text-slate-100 hover:text-amber-600"
+            className="text-ms lg:text-lg font-semibold text-slate-100 hover:text-amber-600"
           >
             {props?.user?.response.name}
           </p>
@@ -310,93 +318,160 @@ function Header(props) {
       </div>
     );
   }
+
+  useLayoutEffect(() => {
+    console.log(div);
+    const divAnimate = div.current.getBoundingClientRect().top;
+    console.log(divAnimate);
+    const onScroll = () => {
+      if (divAnimate < window.scrollY) {
+        console.log("ok");
+        div.current.style.position = "fixed";
+        div.current.style.top = 0;
+        div.current.style.left = 0;
+      } else {
+        div.current.style.position = "relative";
+      }
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
-    <header className="container ">
-      <div className="flex ">
-        <div className="items-center flex">
-          <h1 className="text-5xl">
-            <a href="/" className="flex flex-col text-center">
-              <span>LOTTO</span>
-              <span>CINEMA</span>
-            </a>
-          </h1>
-        </div>
-        <div className="flex-1 justify-content-center flex-col flex">
-          <div className="flex items-center justify-content-end">
-            <div className="align-content-center">
-              <div className="rounded-pill bg-gray-900  flex align-content-center justify-content-end">
-                <input
-                  type="text"
-                  id="search"
-                  value={search}
-                  onChange={onSearchChange}
-                  placeholder="Tìm kiếm phim..."
-                  className="w-100 bg-gray-900 m-1 rounded-full border-gray-900 p-1.5 text-white "
+    <header className="container relative ">
+      {/* <div className="fixed md:relative top-0 left-0 right-0 overflow-x-hidden overflow-y-scroll"> */}
+      <div ref={div} className="bg-gray-900 w-100 ">
+        <nav className="flex w-auto justify-evenly ">
+          <div className="items-center flex">
+            <h1 className="md:text-5xl text-3xl">
+              <a
+                href="/"
+                className="flex md:flex-col text-center space-x-2 md:space-x-0"
+              >
+                <span>LOTTO</span>
+                <span>CINEMA</span>
+              </a>
+            </h1>
+          </div>
+          <div className="md:hidden flex flex-1 justify-content-end align-items-center">
+            <button
+              className="hamburger justify-content-center "
+              onClick={() => {
+                setIsNavExpanded(!isNavExpanded);
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="white"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+                  clipRule="evenodd"
                 />
-                <button
-                  type="button"
-                  onClick={() => onClickSearch()}
-                  className=" rounded-l-lg p-2 text-white"
-                >
-                  <FaSearch />
-                </button>
+              </svg>
+            </button>
+          </div>
+          <div
+            className={
+              isNavExpanded ? "navigation-menu expanded" : "navigation-menu on "
+            }
+          >
+            <div className="expanded  block md:hidden">
+              <div className={isNavExpanded ? "block" : "hidden"}>
+                <Offcanvas.Header closeButton></Offcanvas.Header>
+                <Offcanvas.Body>
+                  <Nav className="justify-content-end flex-grow-1 pe-3">
+                    <Nav.Item>{component}</Nav.Item>
+                    <Nav.Link href="/">Trang chủ</Nav.Link>
+                    <Nav.Link href="/phim_dang_chieu">Phim</Nav.Link>
+                    <Nav.Link href="/lich-chieu">Lịch chiếu</Nav.Link>
+                    <Nav.Link href="/uu-dai">Ưu đãi</Nav.Link>
+                    <Nav.Link href="/gia-ve">Giá vé</Nav.Link>
+                    <Nav.Link href="/gioi-thieu">Giới thiệu</Nav.Link>
+                    <Nav.Link href="/ho-tro">Hỗ trợ</Nav.Link>
+                  </Nav>
+                </Offcanvas.Body>
               </div>
             </div>
-
-            <div className="">{component}</div>
-          </div>
-          <div className="flex items-center align-content-center text-white justify-content-end align-items-end">
-            <a
-              href="/"
-              className="p-2.5 bg-amber-500 rounded-full text-white mr-3 hover:bg-amber-500"
-            >
-              <FaHome className="text-2xl " />
-            </a>
-            <div className="flex w-75 rounded-full border-2 items-center justify-content-around">
-              <a
-                href="/phim_dang_chieu"
-                className="text-white flex items-center font-semibold text-lg hover:bg-amber-500"
-              >
-                <FaFilm className="mr-2" /> Phim
-              </a>
-              <a
-                href="/lich-chieu"
-                className="text-white flex  items-center  font-semibold text-lg hover:bg-amber-500"
-              >
-                <BsCalendar className="mr-2" />
-                Lịch chiếu
-              </a>
-              <a
-                href="/uu-dai"
-                className="text-white flex items-center  font-semibold text-lg hover:bg-amber-500"
-              >
-                <BsGift className="mr-2" />
-                Ưu đãi
-              </a>
-              <a
-                href="/gia-ve"
-                className="text-white flex items-center  font-semibold text-lg hover:bg-amber-500"
-              >
-                <FaRegMoneyBillAlt className="mr-2" />
-                Giá vé
-              </a>
-              <a
-                href="/gioi-thieu"
-                className="text-white flex items-center  font-semibold text-lg hover:bg-amber-500"
-              >
-                <BsInfoCircle className="mr-2" />
-                Giới thiệu
-              </a>
-              <a
-                href="/ho-tro"
-                className="text-white flex items-center  font-semibold text-lg hover:bg-amber-500"
-              >
-                <BsQuestionSquare className="mr-2" />
-                Hỗ trợ
-              </a>
+            <div className="on md:block hidden flex flex-1 justify-content-end align-items-center">
+              <div className=" flex items-center justify-content-end">
+                <div className="align-content-center">
+                  <div className="rounded-pill bg-gray-900  flex align-content-center justify-content-end">
+                    <input
+                      type="text"
+                      id="search"
+                      value={search}
+                      onChange={onSearchChange}
+                      placeholder="Tìm kiếm phim..."
+                      className="w-100 bg-gray-900 m-1 rounded-full border-gray-900 p-1.5 text-white "
+                    />
+                    <button
+                      type="button"
+                      onClick={() => onClickSearch()}
+                      className=" rounded-l-lg p-2 text-white"
+                    >
+                      <FaSearch />
+                    </button>
+                  </div>
+                </div>
+                <div className="">{component}</div>
+              </div>
+              <div className=" flex items-center align-content-center text-white justify-content-end align-items-end">
+                <a
+                  href="/"
+                  className="p-2.5 bg-amber-500 rounded-full text-white mr-3 hover:bg-amber-500"
+                >
+                  <FaHome className="text-lg lg:text-lg" />
+                </a>
+                <div className="flex lg:w-75 w-auto rounded-full border-2 items-center justify-content-around">
+                  <a
+                    href="/phim_dang_chieu"
+                    className="text-white flex items-center font-semibold text-sm lg:text-lg hover:bg-amber-500 hover:rounded-l-full"
+                  >
+                    <FaFilm className="mr-2 hidden lg:block" /> Phim
+                  </a>
+                  <a
+                    href="/lich-chieu"
+                    className="text-white flex  items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500"
+                  >
+                    <BsCalendar className="mr-2 hidden lg:block" />
+                    Lịch chiếu
+                  </a>
+                  <a
+                    href="/uu-dai"
+                    className="text-white flex items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500"
+                  >
+                    <BsGift className="mr-2 hidden lg:block" />
+                    Ưu đãi
+                  </a>
+                  <a
+                    href="/gia-ve"
+                    className="text-white flex items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500"
+                  >
+                    <FaRegMoneyBillAlt className="mr-2 hidden lg:block" />
+                    Giá vé
+                  </a>
+                  <a
+                    href="/gioi-thieu"
+                    className="text-white flex items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500"
+                  >
+                    <BsInfoCircle className="mr-2 hidden lg:block" />
+                    Giới thiệu
+                  </a>
+                  <a
+                    href="/ho-tro"
+                    className="text-white flex items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500 hover:rounded-r-full"
+                  >
+                    <BsQuestionSquare className="mr-2 hidden lg:block" />
+                    Hỗ trợ
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </nav>
       </div>
     </header>
   );

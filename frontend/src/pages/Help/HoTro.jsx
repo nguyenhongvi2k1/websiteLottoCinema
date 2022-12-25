@@ -7,7 +7,6 @@ import Answer1 from "../Help/Answer1";
 import Answer2 from "../Help/Answer2";
 import Answer3 from "../Help/Answer3";
 import Answer4 from "../Help/Answer4";
-import { toast } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class HoTro extends React.Component {
@@ -82,53 +81,59 @@ class HoTro extends React.Component {
         <div className="container">
           <div className="faq-wrap">
             <div className="section-title">
-              <h2>HỎI VÀ ĐÁP</h2>
+              <h2 className="md:text-3xl text-xl">HỎI VÀ ĐÁP</h2>
             </div>
             <div
               id="ask-0"
-              className="ask mb-3"
+              className="ask mb-3 md:text-lg text-ms"
               onClick={() => this.toggleBox(0)}
             >
               <span className="number">01</span>
-              <h3>Làm thế nào để mua vé online?</h3>
+              <p className="md:text-lg text-ms">
+                Làm thế nào để mua vé online?
+              </p>
               <span id="arrow-0" className="st-arrow"></span>
             </div>
             {open[0] && <Answer1 />}
             <div
               id="ask-1"
-              className="ask mb-3"
+              className="ask mb-3 md:text-lg text-ms"
               onClick={() => this.toggleBox(1)}
             >
-              <span className="number">02</span>
-              <h3>
+              <span className="number md:text-lg text-ms">02</span>
+              <p className="md:text-lg text-ms">
                 Thủ tục đặt vé online và phương thức thanh toán như thế nào?
-              </h3>
+              </p>
               <span id="arrow-1" className="st-arrow"></span>
             </div>
             {open[1] && <Answer2 />}
             <div
               id="ask-2"
-              className="ask mb-3"
+              className="ask mb-3 md:text-lg text-ms"
               onClick={() => this.toggleBox(2)}
             >
               <span className="number">03</span>
-              <h3>Làm sao để được cấp thẻ thành viên?</h3>
+              <p className="md:text-lg text-ms">
+                Làm sao để được cấp thẻ thành viên?
+              </p>
               <span id="arrow-2" className="st-arrow"></span>
             </div>
             {open[2] && <Answer3 />}
             <div
               id="ask-3"
-              className="ask mb-3"
+              className="ask mb-3 md:text-lg text-ms"
               onClick={() => this.toggleBox(3)}
             >
               <span className="number">04</span>
-              <h3>Làm sao để biết được số điểm đã tích lũy?</h3>
+              <p className="md:text-lg text-ms">
+                Làm sao để biết được số điểm đã tích lũy?
+              </p>
               <span id="arrow-2" className="st-arrow"></span>
             </div>
             {open[3] && <Answer4 />};
             <div className="faq-form w-75">
               <div className="section-title mt-2">
-                <h2>Gửi câu hỏi</h2>
+                <h2 className="md:text-3xl text-xl">Gửi câu hỏi</h2>
               </div>
               <form id="frm_contact" name="frm_contact">
                 {this.state.user?.map((user) => (
@@ -170,7 +175,7 @@ class HoTro extends React.Component {
                     </div>
                     <div className="input-but mb-2">
                       <button
-                        className="btn-signIn p-3 font-bold text-xl rounded-tr-full "
+                        className="btn-signIn p-3 font-bold md:text-xl text-lg rounded-tr-full "
                         type="button"
                         onClick={() => this.handleSubmit(user.id)}
                       >

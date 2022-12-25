@@ -71,7 +71,9 @@ class BuyTicket extends Component {
   }
   render() {
     const movieComponent = this.state.movies.map((movie) => (
-      <option value={movie.id}>{movie.title}</option>
+      <option value={movie.id} className="lg:text-lg text-sx">
+        {movie.title}
+      </option>
     ));
     const dateComponent = this.state.dates.map((date) => (
       <option value={date.fk_dayshowtimes.id}>
@@ -87,15 +89,15 @@ class BuyTicket extends Component {
       // <!-- ======= Mua vé nhanh ======= -->
       <div className="bg-gradient-to-r from-gray-100 to-sky-900">
         <div className="container grid grid-flow-col item-center ">
-          <div className="grid grid-flow-row uppercase  item-center justify-content-center text-5xl font-bold p-2 text-red-500 mr-2 w-100">
+          <div className="grid grid-flow-row uppercase  item-center justify-content-center md:text-4xl text-lg font-bold p-2 text-red-500 mr-2 w-100">
             <p className="item-center">mua vé </p>
             <p className="item-center">nhanh</p>
           </div>
           <div className="grid grid-cols-2 gap-x-4 gap-y-2 align-content-center item-center p-2 justify-content-center">
-            <div className="select-list" data-cate="film">
+            <div className="select-list " data-cate="film">
               <select
                 onChange={this.handleSelectMovie}
-                class="form-select select-header border-2 rounded-b-lg rounded-tr-full p-2 uppercase font-bold"
+                className="form-select  select-header border-2 rounded-b-lg rounded-tr-full p-2 uppercase font-bold"
                 aria-label="Default select example"
               >
                 <option value={-1}>Chọn phim</option>
@@ -105,7 +107,7 @@ class BuyTicket extends Component {
             <div className="select-list " data-cate="film">
               <select
                 onChange={this.handleSelectDate}
-                class="form-select select-header border-2 rounded-b-lg rounded-tr-full p-2 uppercase font-bold"
+                className="form-select select-header border-2 rounded-b-lg rounded-tr-full p-2 uppercase font-bold"
                 aria-label="Default select example"
               >
                 <option value={-1}>Chọn ngày</option>
@@ -115,7 +117,7 @@ class BuyTicket extends Component {
             <div className="select-list " data-cate="film">
               <select
                 onChange={this.handleSelectTime}
-                class="form-select select-header border-2 rounded-b-lg rounded-tr-full p-2 uppercase font-bold bg-gray-500"
+                className="form-select select-header border-2 rounded-b-lg rounded-tr-full p-2 uppercase font-bold bg-gray-500"
                 aria-label="Default select example"
               >
                 <option value={-1}>Chọn suất</option>

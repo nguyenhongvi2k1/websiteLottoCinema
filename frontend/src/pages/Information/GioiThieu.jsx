@@ -47,16 +47,16 @@ class GioiThieu extends Component {
             <img src={movie.poster} className="lazyload" alt="poster" />
           </div>
           <div className="movie-txt">
-            <h3>{movie.title} </h3>
+            <h3 className="md:text-lg text-base">{movie.title} </h3>
           </div>
           <div className="movie-over">
-            <p>{movie.content}</p>
+            <p className="md:text-base text-ms">{movie.content}</p>
             <span className="atc">...</span>
             <div className="flex flex-col align-items-center justify-content-center text-center bottom-0">
               <a href={`/phim/${movie.id}`} className="detail-link">
                 Chi tiết
               </a>
-              <a href={`/trailer/${movie.id}`} className="trailler-btn">
+              <a href={`/trailer/${movie.id}`} className="trailler-btn text-sm">
                 Xem Trailer
               </a>
               <div className="border rounded-full bg-rose-500	 mt-5 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-amber-500 duration-300">
@@ -93,8 +93,8 @@ class GioiThieu extends Component {
             <h2 className="text-4xl font-bold">Giới Thiệu</h2>
           </div>
           <div>
-            <div className=" flex justify-center align-items-center -space-x-10 m-5">
-              <div className="mix-blend-normal z-10 w-96 h-96">
+            <div className=" flex justify-center align-items-center -space-x-5 m-5">
+              <div className="mix-blend-normal z-10 md:w-96 lg:w-96  w-32 md:h-96 lg:h-96 h-32">
                 <img
                   className="rounded-full border-2 w-full h-full"
                   src={introItem}
@@ -102,12 +102,12 @@ class GioiThieu extends Component {
                 />
               </div>
               <div className="mix-blend-normal flex flex-col">
-                <div className="rounded-r-full bg-amber-500 p-4 ">
-                  <h3 className="pl-6 font-bold text-4xl flex text-white">
+                <div className="rounded-r-full bg-amber-500 p-1 lg:p-4 ">
+                  <h3 className="pl-6 font-bold md:text-4xl text-lg flex text-white">
                     Lotto Cinema
                   </h3>
                 </div>
-                <div className=" pl-12">
+                <div className=" pl-12 md:block hidden ">
                   <p className="text-white">
                     Địa chỉ: Ký túc xá khu A, Đông Hòa, Dĩ An, Bình Dương
                   </p>
@@ -117,12 +117,12 @@ class GioiThieu extends Component {
             </div>
 
             <div className=" text-center mt-5 ">
-              <p className="text-3xl font-bold ">
+              <p className="md:text-3xl text-xl font-bold ">
                 LOTTO CINEMA, ĐIỂM ĐẾN GIẢI TRÍ TRẺ TRUNG VÀ SÔI ĐỘNG
               </p>
               <p className="flex item-center text-center justify-content-center">
                 <FaQuoteLeft className="text-2xl text-amber-500" />
-                <span className="text-xl m-2">
+                <span className="md:text-xl text-base m-2">
                   Đến LottoCinema để trải nghiệm những bộ phim điện ảnh đính
                   thực.
                 </span>
@@ -132,7 +132,7 @@ class GioiThieu extends Component {
 
             <div className="text-center mt-5">
               <div className="text-center mb-4">
-                <h2 className="text-3xl font-bold uppercase">
+                <h2 className="md:text-3xl text-xl font-bold uppercase">
                   Một số hình ảnh của rạp Lotto Cinema
                 </h2>
               </div>
@@ -161,7 +161,9 @@ class GioiThieu extends Component {
             </div>
             <div className="text-center item-center mt-5">
               <div className="text-center">
-                <h2 className="text-3xl font-bold uppercase">Các phim HOT</h2>
+                <h2 className="md:text-3xl text-xl font-bold uppercase">
+                  Các phim HOT
+                </h2>
               </div>
               <div className=" bg-gray-900">
                 <div className="container pt-2">
@@ -176,24 +178,29 @@ class GioiThieu extends Component {
             <div className="text-center item-center mt-5">
               <div className="container">
                 <div className=" mt-5 mb-3">
-                  <div className="grid grid-flow-col auto-cols-max">
-                    <div className="flex promotion-title align-items-start ">
+                  <div className="md:hidden flex text-xl font-bold  text-white justify-content-center align-items-center mr-2">
+                    <h2 className="uppercase origin-center font-bold">
+                      Ưu đãi
+                    </h2>
+                  </div>
+                  <div className="flex">
+                    <div className="md:flex hidden promotion-title align-items-start mr-2">
                       <h2 className="origin-center -rotate-45 ">Ưu đãi</h2>
                     </div>
-                    <div className="flex ">
-                      <div className="max-w-sm promotion-item mr-2 ml-2">
+                    <div className="inline-grid grid-cols-3 gap-1 ml-2">
+                      <div className="promotion-item">
                         <div className="promotion-pic">
-                          <img className="lazyload" src={uudaiHS} alt="" />
+                          <img className="w-auto " src={uudaiHS} alt="" />
                         </div>
                       </div>
-                      <div className="max-w-sm promotion-item mr-2">
+                      <div className="promotion-item ">
                         <div className="promotion-pic">
-                          <img className="lazyload" src={uudaiT3} alt="" />
+                          <img className="w-auto" src={uudaiT3} alt="" />
                         </div>
                       </div>
-                      <div className="max-w-sm promotion-item">
+                      <div className="promotion-item">
                         <div className="promotion-pic">
-                          <img className="lazyload" src={uudaiTV} alt="" />
+                          <img className="w-auto" src={uudaiTV} alt="" />
                         </div>
                       </div>
                     </div>

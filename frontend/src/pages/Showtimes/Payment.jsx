@@ -122,57 +122,67 @@ class Payment extends Component {
               <div>
                 <div className="flex">
                   <span className="text-white uppercase">Tên phim:</span>
-                  <p className="text-2xl font-bold text-orange-500 ml-5 uppercase">
+                  <p className="md:text-2xl text-xl font-bold text-orange-500 ml-5 uppercase">
                     {showtime?.fk_movie?.title}
                   </p>
                 </div>
-                <div className="grid grid-cols-4 text-gray-200 bg-gray-900">
-                  <div className="border border-1 w-auto bg-gray-900">
-                    <p className="text-base font-sans">Suất chiếu</p>
-                    <p className="text-center font-semibold">
-                      {showtime?.fk_dayshowtimes?.fk_showtime?.time}
-                    </p>
-                  </div>
-                  <div className="border border-1 bg-gray-900">
-                    <p className="text-base">Ngày</p>
-                    <p className="text-center font-semibold">
-                      {showtime?.fk_dayshowtimes?.day_showtime}
-                    </p>
-                  </div>
-                  <div className="border border-1 bg-gray-900">
-                    <p className="text-base">Số lượng</p>
-                    <p className="text-center font-semibold">
-                      <span>
-                        {queryString.parse(this.state.menu).quantity_ticket}
-                      </span>
-                      <span> vé</span>
-                    </p>
-                  </div>
+                <table className="border-collapse border border-slate-400 w-100">
+                  <thead>
+                    <tr>
+                      <th className="border border-slate-300 text-center  text-base font-sans text-gray-200 bg-gray-900">
+                        Suất chiếu
+                      </th>
+                      <th className="border border-slate-300 text-center  text-base font-sans text-gray-200 bg-gray-900">
+                        Ngày
+                      </th>
+                      <th className="border border-slate-300 text-center  text-base font-sans text-gray-200 bg-gray-900">
+                        Số lượng
+                      </th>
+                      <th className="border border-slate-300 text-center text-base font-sans text-gray-200 bg-gray-900">
+                        Tổng số tiền
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border border-slate-300 text-center text-center font-serif text-gray-200 bg-gray-900">
+                        {showtime?.fk_dayshowtimes?.fk_showtime?.time}
+                      </td>
+                      <td className="border border-slate-300 text-center text-center font-serif text-gray-200 bg-gray-900">
+                        {showtime?.fk_dayshowtimes?.day_showtime}
+                      </td>
+                      <td className="border border-slate-300 text-center text-center font-serif text-gray-200 bg-gray-900">
+                        <span>
+                          {queryString.parse(this.state.menu).quantity_ticket}
+                        </span>
+                        <span> vé</span>
+                      </td>
+                      <td className="border border-slate-300 text-center text-center font-serif text-gray-200 bg-gray-900">
+                        <span>{this.state.sum}</span>
 
-                  <div className="border border-1 w-48 min-w-full ">
-                    <p className="text-base">Tổng số tiền</p>
-                    <p className="text-center font-semibold">
-                      <span>{this.state.sum} </span>
-                      <sup>đ</sup>
-                    </p>
-                  </div>
-                  <div className="border border-1 text-center">
-                    <p>Số ghế</p>
-                  </div>
-                  <div className="col-span-3 border border-1">
-                    <p className="text-align-left">
-                      {queryString.parse(this.state.menu)?.chair}
-                    </p>
-                  </div>
-                </div>
+                        <sup>đ</sup>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-slate-300 text-center text-center font-sans text-gray-200 bg-gray-900">
+                        Số ghế
+                      </td>
+                      <span className="text-center text-center font-serif text-gray-200 bg-gray-900">
+                        {queryString.parse(this.state.menu)?.chair}
+                      </span>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
-          <div className="order-content">
+          <div className="order-content mb-2">
             <div className="final-content ">
-              <div className="flex justify-content-center">
-                <div className="w-50 cinema-name p-2 my-2 rounded-r-full rounded-l-full">
-                  <h2>Lotto Cinema</h2>
+              <div className="flex  justify-content-center">
+                <div className="flex justify-content-center w-75 cinema-name p-2 my-2 rounded-r-full rounded-l-full">
+                  <h2 className="lg:text-3xl md:text-2xl text-xl mb-0">
+                    Lotto Cinema
+                  </h2>
                 </div>
               </div>
               <div className="final-confirm">
@@ -180,7 +190,7 @@ class Payment extends Component {
                   Cảm ơn quý khách đã đến với <strong>Lottocinema</strong> !
                   <br /> Xin quý khách vui lòng kiểm tra lại thông tin đặt vé{" "}
                 </p>
-                <div className="confirm-box">
+                <div className="confirm-box md:text-base text-sm">
                   {this.state.user?.map((user) => (
                     <div className="confirm-cus">
                       <p>
@@ -204,24 +214,26 @@ class Payment extends Component {
                       />
                     </div>
                     <div className="confirm-film-text">
-                      <h3>{showtime?.fk_movie?.title}</h3>
-                      <p>
+                      <h3 className=" md:text-xl text-sm">
+                        {showtime?.fk_movie?.title}
+                      </h3>
+                      <p className=" md:text-base text-xs">
                         Ngày chiếu:{" "}
                         <b>{showtime?.fk_dayshowtimes?.day_showtime}</b>
                       </p>
-                      <p>
+                      <p className=" md:text-base text-xs">
                         Xuất chiếu:{" "}
                         <b>{showtime?.fk_dayshowtimes?.fk_showtime?.time}</b>
                       </p>
                     </div>
                   </div>
                   <div className="confirm-ticket">
-                    <div className="confirm-mark">Ghế</div>
+                    <div className="confirm-mark md:text-base text-xs">Ghế</div>
                     <div className="confirm-text">
-                      <div className="confirm-mark">
+                      <div className="confirm-mark md:text-base text-xs">
                         {queryString.parse(this.state.menu).chair}
                       </div>
-                      <div className="confirm-value">
+                      <div className="confirm-value md:text-base text-xs">
                         <span>
                           {queryString.parse(this.state.menu).summary}
                         </span>
@@ -230,13 +242,13 @@ class Payment extends Component {
                     </div>
                   </div>
                   <div class="confirm-cons">
-                    <div class="confirm-mark">Combo</div>
+                    <div class="confirm-mark md:text-base text-xs">Combo</div>
                     <div className="confirm-text">
-                      <div className="confirm-mark">
+                      <div className="confirm-mark md:text-base text-xs">
                         {this.state.food?.name}
                       </div>
                       <div className="confirm-value">
-                        <span>
+                        <span className="md:text-base text-xs">
                           {parseInt(this.state.food?.price) *
                             parseInt(queryString.parse(this.state.menu).food)}
                         </span>
@@ -254,17 +266,19 @@ class Payment extends Component {
                 </div>
               </div>
 
-              <div className="final-form">
+              <div className="final-form mb-2">
                 <form id="final">
                   <div className="input-text">
-                    <h2>ĐIỀU KHOẢN CHUNG</h2>
-                    <div className="terms_condition_paypal">
+                    <h2 className="lg:text-3xl md:text-2xl text-xl mb-0">
+                      ĐIỀU KHOẢN CHUNG
+                    </h2>
+                    <div className="terms_condition_paypal md:text-base text-xs">
                       <p>&nbsp;</p>
-                      <p>
+                      <p className="md:text-base text-xs">
                         Việc bạn sử dụng website này đồng nghĩa với việc bạn
                         đồng ý với những thỏa thuận dưới đây.
                       </p>
-                      <p>
+                      <p className="md:text-base text-xs">
                         Nếu bạn không đồng ý, xin vui lòng không sử dụng
                         website.
                       </p>
@@ -406,7 +420,7 @@ class Payment extends Component {
                       </div>
                     </div>
 
-                    <label className="payment_check">
+                    <label className="payment_check md:text-base text-xs">
                       Tôi bảo đảm mua vé xem phim này theo đúng độ tuổi quy
                       định.
                       <input type="checkbox" />
@@ -414,21 +428,21 @@ class Payment extends Component {
                     </label>
 
                     <div className="payment_method">
-                      <label className="payment_method_radio">
+                      <label className="payment_method_radio md:text-base text-xs">
                         {" "}
                         Quốc tế
                         <input type="radio" name="radio" id="3" />
                         <span className="payment_method_icon"></span>
                       </label>
                       <br />
-                      <label className="payment_method_radio">
+                      <label className="payment_method_radio md:text-base text-xs">
                         {" "}
                         Nội địa
                         <input type="radio" name="radio" id="3" />
                         <span className="payment_method_icon"></span>
                       </label>
                       <br />
-                      <label className="payment_method_radio">
+                      <label className="payment_method_radio md:text-base text-xs">
                         {" "}
                         Thanh toán qua ví MoMo
                         <input type="radio" name="radio" id="3" />

@@ -46,7 +46,7 @@ class Cards_Schedule_number extends Component {
     const movieElement = this.state.showtime
       ? this.state.showtime?.map((showtime) => {
           return (
-            <div className="grid grid-flow-row-dense grid-cols-3 grid-rows-1 gap-2   mb-5  align-items-center">
+            <div className="md:grid grid-flow-row-dense md:grid-cols-3 md:grid-rows-1 grid-cols-1 grid-rows-2 gap-2   mb-5  align-items-center">
               <div className="grid grid-flow-row-dense grid-cols-3 grid-rows-1 gap-2   bg-amber-600 rounded-sm shadow-lg h-auto">
                 <img
                   className="border border-2 w-full"
@@ -73,9 +73,9 @@ class Cards_Schedule_number extends Component {
                   <img src={icon} alt="icon" />
                 </div>
               </div>
-              <div className="col-span-2 flex  align-items-center">
+              <div className="col-span-2 flex md:mt-0 mt-1 align-items-center">
                 <div className="row-date-cards bg-yellow-500 rounded-bl-3xl rounded-tr-3xl">
-                  <p className="my-7 mx-2 text-black font-bold text-lg">
+                  <p className="my-7 mx-2 text-black font-bold lg:text-lg md:text-base text-sm ">
                     {showtime.fk_dayshowtimes.day_showtime}
                   </p>
                 </div>
@@ -107,12 +107,12 @@ class Cards_Schedule_number extends Component {
         <BuyTicket />
         <div className="container mt-5 text-white">
           <div className="flex justify-content-center align-items-center bg-emerald-900 text-center border border-2 rounded-r-full rounded-l-full">
-            <span className="text-4xl font-bold uppercase text-white p-2">
+            <span className="md:text-4xl text-xl font-bold uppercase text-white md:p-2 p-1">
               Lịch Chiếu
             </span>
           </div>
-          <div className=" flex justify-center align-items-center -space-x-10 m-5">
-            <div className="mix-blend-normal z-10 w-96 h-96">
+          <div className=" flex justify-center align-items-center -space-x-5 m-5">
+            <div className="mix-blend-normal z-10 md:w-96 lg:w-96  w-32 md:h-96 lg:h-96 h-32">
               <img
                 className="rounded-full border-2 w-full h-full"
                 src={introItem}
@@ -120,12 +120,12 @@ class Cards_Schedule_number extends Component {
               />
             </div>
             <div className="mix-blend-normal flex flex-col">
-              <div className="rounded-r-full bg-amber-500 p-4 ">
-                <h3 className="pl-6 font-bold text-4xl flex text-white">
+              <div className="rounded-r-full bg-amber-500 p-1 lg:p-4 ">
+                <h3 className="pl-6 font-bold md:text-4xl text-lg flex text-white">
                   Lotto Cinema
                 </h3>
               </div>
-              <div className=" pl-12">
+              <div className=" pl-12 md:block hidden ">
                 <p className="text-white">
                   Địa chỉ: Ký túc xá khu A, Đông Hòa, Dĩ An, Bình Dương
                 </p>

@@ -25,7 +25,7 @@ class UuDai extends Component {
       .then((response) => response.json())
       .then((data) => {
         this.setState({ movies: data }, () => {
-          console.log(this.state.movies);
+          // console.log(this.state.movies);
         });
       });
   }
@@ -37,16 +37,16 @@ class UuDai extends Component {
             <img src={movie.poster} className="lazyload" alt="poster" />
           </div>
           <div className="movie-txt">
-            <h3>{movie.title} </h3>
+            <h3 className="md:text-lg text-base">{movie.title} </h3>
           </div>
           <div className="movie-over">
-            <p>{movie.content}</p>
+            <p className="md:text-base text-ms">{movie.content}</p>
             <span className="atc">...</span>
             <div className="flex flex-col align-items-center justify-content-center text-center bottom-0">
               <a href={`/phim/${movie.id}`} className="detail-link">
                 Chi tiết
               </a>
-              <a href={`/trailer/${movie.id}`} className="trailler-btn">
+              <a href={`/trailer/${movie.id}`} className="trailler-btn text-sm">
                 Xem Trailer
               </a>
               <div className="border rounded-full bg-rose-500	 mt-5 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-amber-500 duration-300">
@@ -81,12 +81,14 @@ class UuDai extends Component {
         <BuyTicket />
         <div className="container text-white mt-2">
           <div className="text-center m-5 ">
-            <h2 className="font-bold uppercase text-4xl">CÁC ƯU ĐÃI</h2>
+            <h2 className="font-bold uppercase md:text-3xl lg:text-4xl text-2xl">
+              CÁC ƯU ĐÃI
+            </h2>
           </div>
 
           <div className=" w-full">
             <div className="flex flex-col-1 justify-center -space-x-14 w-full m-5">
-              <div className="w-50 shadow-2xl mix-blend-normal z-10">
+              <div className="md:w-50 w-full shadow-2xl mix-blend-normal z-10">
                 <img
                   className="w-full border-2 shadow-2xl"
                   src={uudai_hs}
@@ -95,8 +97,10 @@ class UuDai extends Component {
               </div>
 
               <div className=" bg-gray-800 px-24 py-16">
-                <h3 className="">ƯU ĐÃI HỌC SINH - SINH VIÊN </h3>
-                <p className="">
+                <h3 className="md:text-2xl text-xl">
+                  ƯU ĐÃI HỌC SINH - SINH VIÊN{" "}
+                </h3>
+                <p className="md:text-base text-xs">
                   Áp dụng dành cho giáo viên, giảng viên, học sinh, sinh viên.{" "}
                   <br />
                   Ưu đãi giá vé xem phim chỉ 45,000đ/vé. <br />
@@ -110,7 +114,7 @@ class UuDai extends Component {
             </div>
 
             <div className="flex flex-col-1 justify-center -space-x-14 w-full m-5">
-              <div className="w-50 shadow-2xl mix-blend-normal z-10">
+              <div className="md:w-50 w-full shadow-2xl mix-blend-normal z-10">
                 <img
                   className="w-full border-2 shadow-2xl"
                   src={uudai_thanhvien}
@@ -118,8 +122,8 @@ class UuDai extends Component {
                 />
               </div>
               <div className="bg-gray-800 px-24 py-16">
-                <h3 className="">MỪNG THÀNH VIÊN MỚI</h3>
-                <p className="">
+                <h3 className="md:text-2xl text-xl">MỪNG THÀNH VIÊN MỚI</h3>
+                <p className="md:text-base text-xs">
                   - Giá vé ưu đãi: Giảm 25% cho đơn đặt vé đầu tiên ( bao gồm vé
                   + bắp nước ). <br />
                   - Đối tượng: dành cho khách hàng lần đầu đăng ký tài khoản
@@ -130,7 +134,7 @@ class UuDai extends Component {
             </div>
 
             <div className="flex flex-col-1 justify-center -space-x-14 w-full m-5">
-              <div className="w-50 shadow-2xl mix-blend-normal z-10">
+              <div className="md:w-50 w-full shadow-2xl mix-blend-normal z-10">
                 <img
                   className="w-full border-2 shadow-2xl"
                   src={uudai_thu3}
@@ -138,8 +142,8 @@ class UuDai extends Component {
                 />
               </div>
               <div className="bg-gray-800 px-24 py-16">
-                <h3 className="">THỨ BA VUI VẺ </h3>
-                <p className="">
+                <h3 className="md:text-2xl text-xl">THỨ BA VUI VẺ </h3>
+                <p className="md:text-base text-xs">
                   - Giá vé ưu đãi: 50.000 đ/vé. <br />
                   - Thời gian: Áp dụng cho tất cả các suất chiếu ngày Thứ Ba
                   hàng tuần. <br />- Lưu ý: Không áp dụng cho các ngày lễ/tết.
@@ -150,7 +154,9 @@ class UuDai extends Component {
 
           <div className="text-center item-center mt-5">
             <div className="text-center">
-              <h2 className="text-3xl font-bold uppercase">Các phim HOT</h2>
+              <h2 className="md:text-3xl text-xl font-bold uppercase">
+                Các phim HOT
+              </h2>
             </div>
             <div className=" bg-gray-900">
               <div className="container pt-2">

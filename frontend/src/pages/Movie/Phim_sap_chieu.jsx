@@ -54,16 +54,16 @@ class Phim extends React.Component {
                 <p className="text-ellipsis content"> {movie.content}</p>
               </a>
             </div>
-            <div className="film-item-but align-items-center text-center flex justify-center -space-x-10  ">
+            <div className="film-item-but align-items-center text-center lg:flex lg:flex-row flex flex-col justify-center lg:-space-x-10  space-x-0 ">
               <a
                 href={`/trailer/${movie.id}`}
-                className="mix-blend-normal trailler-btn rounded-full w-50 justify-items-end text-slate-50 hover:text-slate-300 font-bold"
+                className="mix-blend-normal trailler-btn rounded-full md:w-50 w-full justify-items-end text-slate-50 hover:text-slate-300 font-bold"
               >
                 TRAILER
               </a>
               <a
                 href={`/movie/${movie.id}`}
-                className="mix-blend-normal cart-btn rounded-full w-50 text-slate-300 hover:text-slate-50"
+                className="mix-blend-normal cart-btn rounded-full md:w-50 w-full  text-slate-300 hover:text-slate-50"
               >
                 MUA VÉ
               </a>
@@ -96,7 +96,9 @@ class Phim extends React.Component {
             </ul>
           </div>
         </div>
-        <div className="container grid grid-cols-2 gap-2">{movieElement}</div>
+        <div className="container md:grid md:grid-cols-2 flex flex-col gap-2">
+          {movieElement}
+        </div>
 
         <Footer />
       </div>

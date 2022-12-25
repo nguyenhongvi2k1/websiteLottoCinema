@@ -101,76 +101,93 @@ class ChooseUser extends React.Component {
               <div>
                 <div className="flex">
                   <span className="text-white uppercase">Tên phim:</span>
-                  <p className="text-2xl font-bold text-orange-500 ml-5 uppercase">
+                  <p className="md:text-2xl text-xl font-bold text-orange-500 ml-5 uppercase">
                     {showtime?.fk_movie?.title}
                   </p>
                 </div>
-                <div className="grid grid-cols-4 text-gray-200 bg-gray-900">
-                  <div className="border border-1 w-auto bg-gray-900">
-                    <p className="text-base font-sans">Suất chiếu</p>
-                    <p className="text-center font-semibold">
-                      {showtime?.fk_dayshowtimes?.fk_showtime?.time}
-                    </p>
-                  </div>
-                  <div className="border border-1 bg-gray-900">
-                    <p className="text-base">Ngày</p>
-                    <p className="text-center font-semibold">
-                      {showtime?.fk_dayshowtimes?.day_showtime}
-                    </p>
-                  </div>
-                  <div className="border border-1 bg-gray-900">
-                    <p className="text-base">Số lượng</p>
-                    <p className="text-center font-semibold">
-                      <span>
-                        {this.state.counter_old + this.state.counter_children}
-                      </span>
-                      <span> vé</span>
-                    </p>
-                  </div>
-
-                  <div className="border border-1 w-48 min-w-full ">
-                    <p className="text-base">Tổng số tiền</p>
-                    <p className="text-center font-semibold">
-                      <span>
-                        {this.state.sum_old + this.state.sum_children}
-                      </span>
-                      <sup>đ</sup>
-                    </p>
-                  </div>
-                  <div className="border border-1 text-center">
-                    <p>Số ghế</p>
-                  </div>
-                  <div className="col-span-3 border border-1">
-                    <p className="text-align-left"></p>
-                  </div>
-                </div>
+                <table className="border-collapse border border-slate-400 w-100">
+                  <thead>
+                    <tr>
+                      <th className="border border-slate-300 text-center  text-base font-sans text-gray-200 bg-gray-900">
+                        Suất chiếu
+                      </th>
+                      <th className="border border-slate-300 text-center  text-base font-sans text-gray-200 bg-gray-900">
+                        Ngày
+                      </th>
+                      <th className="border border-slate-300 text-center  text-base font-sans text-gray-200 bg-gray-900">
+                        Số lượng
+                      </th>
+                      <th className="border border-slate-300 text-center text-base font-sans text-gray-200 bg-gray-900">
+                        Tổng số tiền
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border border-slate-300 text-center text-center font-serif text-gray-200 bg-gray-900">
+                        {showtime?.fk_dayshowtimes?.fk_showtime?.time}
+                      </td>
+                      <td className="border border-slate-300 text-center text-center font-serif text-gray-200 bg-gray-900">
+                        {showtime?.fk_dayshowtimes?.day_showtime}
+                      </td>
+                      <td className="border border-slate-300 text-center text-center font-serif text-gray-200 bg-gray-900">
+                        <span>
+                          {this.state.counter_old + this.state.counter_children}
+                        </span>
+                        <span> vé</span>
+                      </td>
+                      <td className="border border-slate-300 text-center text-center font-serif text-gray-200 bg-gray-900">
+                        <span>
+                          {this.state.sum_old + this.state.sum_children}
+                        </span>
+                        <sup>đ</sup>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-slate-300 text-center text-center font-sans text-gray-200 bg-gray-900">
+                        Số ghế
+                      </td>
+                      <span className="text-center text-center font-serif text-gray-200 bg-gray-900"></span>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
           <div className="order-content">
-            <div className="flex justify-content-center">
-              <div className="w-50 cinema-name p-2 my-2 rounded-r-full rounded-l-full">
-                <h2>Lotto Cinema</h2>
+            <div className="flex  justify-content-center">
+              <div className="flex justify-content-center w-75 cinema-name p-2 my-2 rounded-r-full rounded-l-full">
+                <h2 className="lg:text-3xl md:text-2xl text-xl mb-0">
+                  Lotto Cinema
+                </h2>
               </div>
             </div>
 
             <div className="flex justify-content-center">
-              <div className="ticket-wrap w-75">
+              <div className="ticket-wrap lg:w-75 md:w-9/12 sm:w-full">
                 <div className="tbl-wrap">
-                  <table>
+                  <table className="w-full">
                     <thead>
                       <tr>
-                        <th>Loại vé</th>
-                        <th>Số lượng</th>
-                        <th>Giá (VNĐ)</th>
-                        <th>Tổng tiền (VNĐ)</th>
+                        <th className="lg:text-lg md:text-base text-ms">
+                          Loại vé
+                        </th>
+                        <th className="lg:text-lg md:text-base text-ms">
+                          Số lượng
+                        </th>
+                        <th className="lg:text-lg md:text-base text-ms">
+                          Giá (VNĐ)
+                        </th>
+                        <th className="lg:text-lg md:text-base text-ms">
+                          Tổng tiền (VNĐ)
+                        </th>
                       </tr>
                     </thead>
 
                     <tbody>
                       <tr>
                         <td>Người Lớn</td>
-                        <td className="ticket-num">
+                        <td className="ticket-num flex align-items-center justify-around">
                           <button
                             onClick={this.handleSubtractionOld}
                             className="minus"
@@ -201,7 +218,7 @@ class ChooseUser extends React.Component {
                       </tr>
                       <tr data-seatstyle-id="29" data-ticket-id="26">
                         <td>Trẻ em</td>
-                        <td className="ticket-num">
+                        <td className="ticket-num flex align-items-center justify-around">
                           <button
                             onClick={this.handleSubtractionChildren}
                             className="minus"
@@ -233,7 +250,7 @@ class ChooseUser extends React.Component {
                     </tbody>
                   </table>
                 </div>
-                <ul className="ticket-cal text-center p-4">
+                <ul className="ticket-cal text-center p-4 ">
                   <li className="total-ticket-num mr-5">
                     Số lượng:
                     <span>

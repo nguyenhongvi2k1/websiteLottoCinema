@@ -39,16 +39,16 @@ class Home extends Component {
             <img src={movie.poster} className="lazyload" alt="poster" />
           </div>
           <div className="movie-txt">
-            <h3>{movie.title} </h3>
+            <h3 className="md:text-lg text-base">{movie.title} </h3>
           </div>
           <div className="movie-over">
-            <p>{movie.content}</p>
+            <p className="md:text-base text-ms">{movie.content}</p>
             <span className="atc">...</span>
             <div className="flex flex-col align-items-center justify-content-center text-center bottom-0">
               <a href={`/phim/${movie.id}`} className="detail-link">
                 Chi tiết
               </a>
-              <a href={`/trailer/${movie.id}`} className="trailler-btn">
+              <a href={`/trailer/${movie.id}`} className="trailler-btn text-sm">
                 Xem Trailer
               </a>
               <div className="border rounded-full bg-rose-500	 mt-5 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-amber-500 duration-300">
@@ -86,13 +86,16 @@ class Home extends Component {
               <li className="mix-blend-normal rounded-r-full z-10  bg-yellow-400">
                 <a
                   href="/phim_dang_chieu"
-                  className="active rounded-r-full text-black cursor-auto"
+                  className="active rounded-r-full text-black cursor-auto text-sm md:text-2xl py-1 md:py-2 px-3 lg:px-6"
                 >
                   Phim đang chiếu
                 </a>
               </li>
               <li className="mix-blend-normal pl-10 rounded-r-full bg-amber-600">
-                <a href="/phim_sap_chieu" className=" rounded-r-full ">
+                <a
+                  href="/phim_sap_chieu"
+                  className=" rounded-r-full text-sm md:text-2xl py-1 md:py-2 px-3 md:px-6"
+                >
                   Phim sắp chiếu
                 </a>
               </li>
@@ -110,24 +113,27 @@ class Home extends Component {
         </div>
         <div className="container">
           <div className=" mt-5 mb-3">
-            <div className="grid grid-flow-col auto-cols-max">
-              <div className="flex promotion-title align-items-start ">
+            <div className="md:hidden flex text-xl font-bold  text-white justify-content-center align-items-center mr-2">
+              <h2 className="uppercase origin-center font-bold">Ưu đãi</h2>
+            </div>
+            <div className="flex">
+              <div className="md:flex hidden promotion-title align-items-start mr-2">
                 <h2 className="origin-center -rotate-45 ">Ưu đãi</h2>
               </div>
-              <div className="flex ">
-                <div className="max-w-sm promotion-item mr-2 ml-2">
+              <div className="inline-grid grid-cols-3 gap-1 ml-2">
+                <div className="promotion-item">
                   <div className="promotion-pic">
-                    <img className="lazyload" src={uudaiHS} alt="" />
+                    <img className="w-auto " src={uudaiHS} alt="" />
                   </div>
                 </div>
-                <div className="max-w-sm promotion-item mr-2">
+                <div className="promotion-item ">
                   <div className="promotion-pic">
-                    <img className="lazyload" src={uudaiT3} alt="" />
+                    <img className="w-auto" src={uudaiT3} alt="" />
                   </div>
                 </div>
-                <div className="max-w-sm promotion-item">
+                <div className="promotion-item">
                   <div className="promotion-pic">
-                    <img className="lazyload" src={uudaiTV} alt="" />
+                    <img className="w-auto" src={uudaiTV} alt="" />
                   </div>
                 </div>
               </div>
