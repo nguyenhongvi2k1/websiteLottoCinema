@@ -1,10 +1,11 @@
-import { Component } from "react";
+import React, { useState, Component } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import queryString from "query-string";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { CLIENT_ID } from "../../components/Checkout";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 class Payment extends Component {
   constructor(props) {
     super(props);
@@ -15,11 +16,15 @@ class Payment extends Component {
       sum: 0,
       showtime: [],
       food: [],
+      showpayment: false,
+      success: false,
+      ErrorMessage: "",
+      orderID: false,
     };
     this.onSubmit = this.onSubmit.bind(this);
+    this.changeShowPayment = this.changeShowPayment.bind(this);
   }
   componentDidMount() {
-    // console.log(this.state.users);
     const jsonStr = localStorage.getItem("user");
     if (jsonStr != null) {
       this.setState({ id_user: JSON.parse(jsonStr) }, () => {
@@ -29,7 +34,7 @@ class Payment extends Component {
           .then((res) => res.json())
           .then((data) =>
             this.setState({ user: data }, () => {
-              console.log(this.state.user);
+              // console.log(this.state.user);
             })
           );
       });
@@ -65,50 +70,146 @@ class Payment extends Component {
         });
       });
   }
+  changeShowPayment() {
+    this.setState({ showpayment: true });
+  }
 
   onSubmit() {
-    const id_user = this.state.user[0]?.id;
-    const id_movie = queryString.parse(this.state.menu).id_movie;
-    const id_food = queryString.parse(this.state.menu).id_food;
-    const id_dayshowtime = queryString.parse(this.state.menu).id_dayshowtime;
-    const id_time = queryString.parse(this.state.menu).id_time;
-    const quantity_ticket = queryString.parse(this.state.menu).quantity_ticket;
-    const summary = this.state.sum;
-    const chair = queryString.parse(this.state.menu).chair;
-    const body_data = {
-      id_user,
-      id_movie,
-      id_food,
-      id_dayshowtime,
-      id_time,
-      quantity_ticket,
-      summary,
-      chair,
-    };
-    console.log("body_data : ", body_data);
-    fetch(`http://localhost:8000/api/postpaymentticket/`, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, *cors, same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
-      headers: {
-        "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: JSON.stringify(body_data),
-    })
-      // .then((res) => res.json())
-      .then((res) => {
-        if (res.status === 200) {
-          window.location.href = "/";
-          toast.success(
-            "Bạn đã thanh toán thành công. Chúc bạn xem phim vui vẻ <3"
-          );
-        }
-      });
+    this.setState({ showpayment: !this.state.showpayment });
+    // const id_user = this.state.user[0]?.id;
+    // const id_movie = queryString.parse(this.state.menu).id_movie;
+    // const id_food = queryString.parse(this.state.menu).id_food;
+    // const id_dayshowtime = queryString.parse(this.state.menu).id_dayshowtime;
+    // const id_time = queryString.parse(this.state.menu).id_time;
+    // const quantity_ticket = queryString.parse(this.state.menu).quantity_ticket;
+    // const summary = this.state.sum;
+    // const chair = queryString.parse(this.state.menu).chair;
+    // const body_data = {
+    //   id_user,
+    //   id_movie,
+    //   id_food,
+    //   id_dayshowtime,
+    //   id_time,
+    //   quantity_ticket,
+    //   summary,
+    //   chair,
+    // };
+    // console.log("body_data : ", body_data);
+    // fetch(`http://localhost:8000/api/postpaymentticket/`, {
+    //   method: "POST", // *GET, POST, PUT, DELETE, etc.
+    //   mode: "cors", // no-cors, *cors, same-origin
+    //   cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    //   credentials: "same-origin", // include, *same-origin, omit
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(body_data),
+    // })
+    //   .then((res) => {
+    //     if (res.status === 200) {
+    //       window.location.href = "/";
+    //       toast.success(
+    //         "Bạn đã thanh toán thành công. Chúc bạn xem phim vui vẻ <3"
+    //       );
+    //     }
+    //   });
   }
   render() {
+    const moneyFood = Math.floor(
+      (parseInt(this.state.food.price) *
+        parseInt(queryString.parse(this.state.menu).food)) /
+        23000
+    );
+    const moneyChair = Math.floor(
+      parseInt(queryString.parse(this.state.menu).summary) / 23000
+    );
+
+    console.log(moneyChair, moneyFood);
+
     const componet = this.state.showtime?.map((showtime) => {
+      const createOrder = (data, actions) => {
+        return actions.order
+          .create({
+            purchase_units: [
+              {
+                description:
+                  showtime?.fk_movie.title +
+                  " \r\n " +
+                  "Day Showtime: " +
+                  showtime?.fk_dayshowtimes.day_showtime +
+                  " \r\n" +
+                  showtime?.fk_dayshowtimes.fk_showtime.time +
+                  " \r\n " +
+                  "Chair: " +
+                  queryString.parse(this.state.menu)?.chair,
+                amount: {
+                  currency_code: "USD",
+                  value: parseFloat(moneyChair, 10) + parseFloat(moneyFood, 10),
+                },
+              },
+            ],
+          })
+          .then((orderID) => {
+            this.setState({ orderID: this.state.orderID });
+            console.log(this.state.orderID);
+            return orderID;
+          });
+      };
+      const id_user = queryString.parse(this.state.menu).id_user;
+      const id_movie = queryString.parse(this.state.menu).id_movie;
+      const id_food = queryString.parse(this.state.menu).id_food;
+      const id_dayshowtime = queryString.parse(this.state.menu).id_dayshowtime;
+      const id_time = queryString.parse(this.state.menu).id_time;
+      const quantity_ticket = queryString.parse(
+        this.state.menu
+      ).quantity_ticket;
+      const summary = this.state.sum;
+      const chair = queryString.parse(this.state.menu).chair;
+      const body_data = {
+        id_user,
+        id_movie,
+        id_food,
+        id_dayshowtime,
+        id_time,
+        quantity_ticket,
+        summary,
+        chair,
+      };
+      console.log("body_data : ", body_data);
+      // check Approval
+      const onApprove = (data, actions) => {
+        return actions.order.capture().then(function (details) {
+          const { payer } = details;
+          console.log(payer);
+
+          fetch(`http://localhost:8000/api/postpaymentticket/`, {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            mode: "cors", // no-cors, *cors, same-origin
+            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: "same-origin", // include, *same-origin, omit
+            headers: {
+              "Content-Type": "application/json",
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: "follow", // manual, *follow, error
+            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify(body_data), // body data type must match "Content-Type" header
+          }).then((res) => {
+            if (res.status == 200) {
+              window.location.href = "/";
+              toast.success(
+                "Bạn đã thanh toán thành công. Chúc bạn xem phim vui vẻ <3"
+              );
+            }
+          });
+        });
+      };
+
+      //capture likely error
+      const onError = (data, actions) => {
+        this.setState({ ErrorMessage: "An Error occured with your payment " });
+      };
+
       return (
         <div className="container ">
           <div className="order-title mb-2">
@@ -428,36 +529,39 @@ class Payment extends Component {
                     </label>
 
                     <div className="payment_method">
-                      <label className="payment_method_radio md:text-base text-xs">
-                        {" "}
-                        Quốc tế
-                        <input type="radio" name="radio" id="3" />
-                        <span className="payment_method_icon"></span>
-                      </label>
-                      <br />
-                      <label className="payment_method_radio md:text-base text-xs">
-                        {" "}
-                        Nội địa
-                        <input type="radio" name="radio" id="3" />
-                        <span className="payment_method_icon"></span>
-                      </label>
-                      <br />
-                      <label className="payment_method_radio md:text-base text-xs">
-                        {" "}
-                        Thanh toán qua ví MoMo
-                        <input type="radio" name="radio" id="3" />
-                        <span className="payment_method_icon"></span>
-                      </label>
+                      <PayPalScriptProvider
+                        options={{ "client-id": CLIENT_ID }}
+                      >
+                        <div>
+                          <div className="wrapper">
+                            <div className="product-info">
+                              <div className="product-price-btn">
+                                <div className="cinema-btn">
+                                  <button type="button" id="cinema-back">
+                                    Quay lại
+                                  </button>
+                                  <button
+                                    type="button"
+                                    id="cinema-next"
+                                    onClick={this.onSubmit}
+                                  >
+                                    Thanh toán
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <br></br>
+                          {this.state.showpayment ? (
+                            <PayPalButtons
+                              style={{ layout: "vertical" }}
+                              createOrder={createOrder}
+                              onApprove={onApprove}
+                            />
+                          ) : null}
+                        </div>
+                      </PayPalScriptProvider>
                     </div>
-                  </div>
-                  <div className="cinema-btn">
-                    <input type="button" id="cinema-back" value="Quay lại" />
-                    <input
-                      type="button"
-                      id="cinema-next"
-                      value="Thanh toán"
-                      onClick={this.onSubmit}
-                    />
                   </div>
                 </form>
               </div>

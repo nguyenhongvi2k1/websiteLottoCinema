@@ -27,7 +27,7 @@ class BuyTicket extends Component {
   handleSelectMovie(e) {
     const id = e.target.value;
     this.setState({ selectedMovie: id }, () => {
-      if (this.state.selectedMovie != -1) {
+      if (this.state.selectedMovie !== -1) {
         fetch(
           `http://localhost:8000/api/getshowtime/?fk_movie=${this.state.selectedMovie}`
         )
@@ -43,7 +43,7 @@ class BuyTicket extends Component {
   handleSelectDate(e) {
     const id = e.target.value;
     this.setState({ selectedDate: id }, () => {
-      if (this.state.selectedDate != -1) {
+      if (this.state.selectedDate !== -1) {
         fetch(
           `http://localhost:8000/api/getdayshowtime/?fk_movie=${this.state.selectedMovie}&&fk_dayshowtime=${this.state.selectedDate}`
         )
@@ -61,9 +61,9 @@ class BuyTicket extends Component {
     const id = e.target.value;
     this.setState({ selectedTime: id }, () => {
       if (
-        this.state.selectedMovie != -1 &&
-        this.state.selectedDate != -1 &&
-        this.state.selectedTime != -1
+        this.state.selectedMovie !== -1 &&
+        this.state.selectedDate !== -1 &&
+        this.state.selectedTime !== -1
       ) {
         window.location.href = `/choose-user/${this.state.selectedMovie}?id_dayshowtime=${this.state.selectedDate}&&id_time=${this.state.selectedTime}`;
       }

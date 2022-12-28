@@ -1310,6 +1310,18 @@ sup {
   -webkit-appearance: none;
   margin: 5px;
 }
+.cinema-btn button {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: #203f48;
+  color: #fff;
+  padding: 10px 30px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  border: none;
+  margin: 5px;
+}
 
 #cinema-back {
   border-radius: 30px 30px 0px 30px;

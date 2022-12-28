@@ -254,6 +254,7 @@ class ChooseChair extends Component {
       seatChoosed: [], //danh sach ghe da dat ve
       menu: this.props.location.search,
       user: null,
+      id_user: null,
       showtime: [],
     };
     this.onClickData = this.onClickData.bind(this);
@@ -265,8 +266,16 @@ class ChooseChair extends Component {
   componentDidMount() {
     const jsonStr = localStorage.getItem("user");
     if (jsonStr != null) {
-      this.setState({ user: JSON.parse(jsonStr) }, () => {
-        // console.log(this.state.user.response);
+      this.setState({ id_user: JSON.parse(jsonStr) }, () => {
+        fetch(
+          `http://localhost:8000/api/getuser/?email=${this.state.id_user?.response?.email}`
+        )
+          .then((res) => res.json())
+          .then((data) =>
+            this.setState({ user: data }, () => {
+              // console.log(this.state.user);
+            })
+          );
       });
     }
     const id_movie = queryString.parse(this.state.menu).id_movie;
@@ -331,7 +340,7 @@ class ChooseChair extends Component {
     id_food,
     food
   ) {
-    window.location.href = `/payment?id_movie=${id_movie}&id_dayshowtime=${id_dayshowtime}&id_time=${id_time}&quantity_ticket=${quantity_ticket}&summary=${summary}&chair=${chair}&id_food=${id_food}&food=${food}`;
+    window.location.href = `/payment?id_user=${this.state.user[0]?.id}&id_movie=${id_movie}&id_dayshowtime=${id_dayshowtime}&id_time=${id_time}&quantity_ticket=${quantity_ticket}&summary=${summary}&chair=${chair}&id_food=${id_food}&food=${food}`;
   }
   handleFood(
     id_movie,

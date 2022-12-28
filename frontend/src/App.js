@@ -2,12 +2,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import Dashboard from "./components/Admin/Dashboard";
-import User from "./components/Admin/User";
-import InsertMovie from "./components/Admin/InsertMovie";
-import ListMovie from "./components/Admin/ListMovie";
-import SideBar from "./components/Admin/SideBar";
-import Help from "./components/Admin/Help";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./pages/ForgotPassword/ResetPassword";
 import NewPassword from "./pages/ForgotPassword/NewPassword";
@@ -56,13 +50,6 @@ function App() {
         <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/reset-password" component={ResetPassword} />
         <Route path="/new-password" component={NewPassword} />
-
-        <Route path="/admin-dashboard" component={Dashboard} />
-        <Route path="/admin-user" component={User} />
-        <Route path="/admin-movie" component={ListMovie} />
-        <Route path="/admin-help" component={Help} />
-        <Route path="/admin-addmovie" component={InsertMovie} />
-        <Route path="/admin-sidebar" component={SideBar} />
       </Router>
       <ToastContainer />
     </Fragment>

@@ -19,10 +19,7 @@ import {
 
 function Header(props) {
   const div = useRef();
-  // console.log(props);
-  // const [user, setUser] = useState(props?.user?.response);
   const [isNavExpanded, setIsNavExpanded] = useState(false);
-  // const [showNav, setShowNav] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -329,6 +326,7 @@ function Header(props) {
         div.current.style.position = "fixed";
         div.current.style.top = 0;
         div.current.style.left = 0;
+        div.current.style.zIndex = 999;
       } else {
         div.current.style.position = "relative";
       }
