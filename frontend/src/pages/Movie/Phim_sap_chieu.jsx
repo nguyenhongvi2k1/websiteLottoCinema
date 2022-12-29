@@ -10,8 +10,11 @@ class Phim extends React.Component {
     this.state = {
       movies: [],
       user: null,
+      category: [],
+      selectedCategory: null,
     };
     this.updateMovieData = this.updateMovieData.bind(this);
+    this.handleSelectCategory = this.handleSelectCategory.bind(this);
   }
 
   componentDidMount() {
@@ -23,6 +26,11 @@ class Phim extends React.Component {
       .then((response) => response.json())
       .then((data) => {
         this.setState({ movies: data });
+        data.map((data) => {
+          this.setState({
+            category: this.state.category.concat(data.category),
+          });
+        });
       });
   }
   updateMovieData(movies) {
@@ -31,7 +39,30 @@ class Phim extends React.Component {
     });
   }
 
+  handleSelectCategory(e) {
+    const category = e.target.value;
+    console.log("category", category);
+    this.setState({ selectedCategory: category }, () => {
+      if (this.state.selectedCategory != null) {
+        fetch(
+          `http://localhost:8000/api/search?q=${this.state.selectedCategory}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            this.setState({ movies: data }, () => {
+              console.log(this.state.movies);
+            });
+          });
+      }
+    });
+  }
+
   render() {
+    const movieComponent = this.state.category.map((movie) => (
+      <option value={movie} className="lg:text-lg text-sx">
+        {movie}
+      </option>
+    ));
     const movieElement = this.state.movies?.map((movie) => {
       return (
         <div className="p-2 film-item cl-purple grid grid-cols-2 gap-2">
@@ -94,6 +125,20 @@ class Phim extends React.Component {
                 </a>
               </li>
             </ul>
+          </div>
+        </div>
+        <div className="container text-end">
+          <div className="inline-flex justify-content-end mb-2 ">
+            <div className="select-list flex w-4/5" data-cate="film">
+              <select
+                onChange={this.handleSelectCategory}
+                className="form-select  select-header border-2 rounded-b-lg rounded-tr-full p-2 uppercase font-bold"
+                aria-label="Default select example"
+              >
+                <option value={null}>Chọn thể loại</option>
+                {movieComponent}
+              </select>
+            </div>
           </div>
         </div>
         <div className="container md:grid md:grid-cols-2 flex flex-col gap-2">

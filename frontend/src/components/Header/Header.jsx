@@ -9,13 +9,20 @@ import "bootstrap/dist/css/bootstrap.css";
 import "react-toastify/dist/ReactToastify.css";
 import Nav from "react-bootstrap/Nav";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { FaFilm, FaHome, FaRegMoneyBillAlt, FaSearch } from "react-icons/fa";
+import {
+  FaFilm,
+  FaHome,
+  FaRegMoneyBillAlt,
+  FaSearch,
+  FaUserEdit,
+} from "react-icons/fa";
 import {
   BsCalendar,
   BsGift,
   BsInfoCircle,
   BsQuestionSquare,
 } from "react-icons/bs";
+import { IoIosSettings, IoMdHelpCircle, IoIosLogOut } from "react-icons/io";
 
 function Header(props) {
   const div = useRef();
@@ -23,6 +30,7 @@ function Header(props) {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const handleCloseLogin = () => setShowLogin(false);
   const handleShowLogin = () => setShowLogin(true);
   const handleCloseRegister = () => setShowRegister(false);
@@ -44,13 +52,15 @@ function Header(props) {
       [e.target.id]: e.target.value,
     }));
   };
-
+  const onClickRemove = () => {
+    window.localStorage.clear();
+    window.location.href = "/";
+  };
   const onSubmitLogin = async () => {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const body_data = { name, email, password };
-    // console.log("body_data : ", body_data);
 
     fetch("http://localhost:8000/api/authenticate/", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -59,14 +69,12 @@ function Header(props) {
       credentials: "same-origin", // include, *same-origin, omit
       headers: {
         "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       referrerPolicy: "no-referrer",
       body: JSON.stringify(body_data),
     })
       .then((response) => response.json())
       .then((response) => {
-        // console.log(response);
         window.localStorage.setItem("user", JSON.stringify({ response }));
         window.location.href = "/";
         toast.success(
@@ -124,15 +132,82 @@ function Header(props) {
   if (isLoggedIn) {
     component = (
       <div className="flex px-2 py-2 justify-content-center  ">
-        <img className="h-10 w-10 rounded-full" src={avt} alt="avt" />
-        <div className="ml-3 overflow-hidden flex align-items-center justify-content-center">
-          <p
-            type="button"
-            className="text-ms lg:text-lg font-semibold text-slate-100 hover:text-amber-600"
-          >
-            {props?.user?.response.name}
-          </p>
+        <div className="flex">
+          <button onClick={() => setShowProfile(!showProfile)}>
+            <img className="h-10 w-10 rounded-full" src={avt} alt="avt" />
+          </button>
+          <div className="ml-3 overflow-hidden flex align-items-center justify-content-center">
+            <button
+              type="button"
+              onClick={() => setShowProfile(!showProfile)}
+              className=" text-ms lg:text-lg font-semibold text-slate-100 hover:text-amber-600"
+            >
+              {props?.user?.response.name}
+            </button>
+          </div>
         </div>
+        {showProfile && (
+          <div className="  top-1/2 lg:right-24 absolute z-10 ">
+            <div className="bg-white rounded-lg p-4 m-2.5">
+              <div className="flex align-items-center">
+                <img src={avt} alt="avt" className="w-12  rounded-full" />
+                <h2 className="lg:text-xl text-base font-bold ml-1">
+                  {props?.user?.response.name}
+                </h2>
+              </div>
+              <hr className="border-1 w-100 bg-gray-600" />
+              <a
+                href=" "
+                className="flex align-items-center text-black justify-content-center"
+              >
+                <div className="p-1 mr-2 flex align-items-center rounded-full bg-gray-300">
+                  <FaUserEdit />
+                </div>
+                <p className="w-100 m-0 font-medium hover:font-bold">
+                  Edit Profile
+                </p>
+                <span></span>
+              </a>
+              <a
+                href=" "
+                className="flex align-items-center text-black justify-content-center"
+              >
+                <div className="p-1 mr-2 flex align-items-center rounded-full bg-gray-300 ">
+                  <IoIosSettings />
+                </div>
+                <p className="w-100 m-0 font-medium hover:font-bold">Setting</p>
+                <span></span>
+              </a>
+              <a
+                href=" "
+                className="flex align-items-center text-black justify-content-center"
+              >
+                <div className="p-1 mr-2 flex align-items-center rounded-full bg-gray-300">
+                  <IoMdHelpCircle />
+                </div>
+                <p className="w-100 m-0 font-medium hover:font-bold">
+                  Help & Support
+                </p>
+                <span></span>
+              </a>
+              <a
+                href=" "
+                className="flex align-items-center text-black justify-content-center"
+              >
+                <div className="p-1 mr-2 flex align-items-center rounded-full bg-gray-300">
+                  <IoIosLogOut />
+                </div>
+                <p
+                  className="w-100 m-0 font-medium hover:font-bold"
+                  onClick={onClickRemove}
+                >
+                  Logout
+                </p>
+                <span></span>
+              </a>
+            </div>
+          </div>
+        )}
       </div>
     );
   } else {
@@ -322,11 +397,11 @@ function Header(props) {
     console.log(divAnimate);
     const onScroll = () => {
       if (divAnimate < window.scrollY) {
-        console.log("ok");
         div.current.style.position = "fixed";
         div.current.style.top = 0;
         div.current.style.left = 0;
         div.current.style.zIndex = 999;
+        // div.current.style.justifyContent = "space-evenly";
       } else {
         div.current.style.position = "relative";
       }
@@ -336,7 +411,6 @@ function Header(props) {
   }, []);
   return (
     <header className="container relative ">
-      {/* <div className="fixed md:relative top-0 left-0 right-0 overflow-x-hidden overflow-y-scroll"> */}
       <div ref={div} className="bg-gray-900 w-100 ">
         <nav className="flex w-auto justify-evenly ">
           <div className="items-center flex">

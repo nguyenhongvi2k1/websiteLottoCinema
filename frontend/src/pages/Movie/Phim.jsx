@@ -57,8 +57,8 @@ class Phim extends React.Component {
   }
   render() {
     const movieComponent = this.state.category.map((movie) => (
-      <option value={movie.category} className="lg:text-lg text-sx">
-        {movie.category}
+      <option value={movie} className="lg:text-lg text-sx">
+        {movie}
       </option>
     ));
     const movieElement = this.state.movies?.map((movie) => {
@@ -125,16 +125,18 @@ class Phim extends React.Component {
             </ul>
           </div>
         </div>
-        <div className="container">
-          <div className="select-list " data-cate="film">
-            <select
-              onChange={this.handleSelectCategory}
-              className="form-select  select-header border-2 rounded-b-lg rounded-tr-full p-2 uppercase font-bold"
-              aria-label="Default select example"
-            >
-              <option value={null}>Chọn thể loại</option>
-              {movieComponent}
-            </select>
+        <div className="container text-end">
+          <div className="inline-flex justify-content-end mb-2 ">
+            <div className="select-list flex w-3/5" data-cate="film">
+              <select
+                onChange={this.handleSelectCategory}
+                className="form-select  select-header border-2 rounded-b-lg rounded-tr-full p-2 uppercase font-bold"
+                aria-label="Default select example"
+              >
+                <option value={null}>Chọn thể loại</option>
+                {movieComponent}
+              </select>
+            </div>
           </div>
         </div>
         <div className="container md:grid md:grid-cols-2 flex flex-col gap-2">
