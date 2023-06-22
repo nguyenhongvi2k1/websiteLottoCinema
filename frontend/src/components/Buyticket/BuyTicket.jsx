@@ -20,7 +20,7 @@ class BuyTicket extends Component {
       .then((response) => response.json())
       .then((data) => {
         this.setState({ movies: data }, () => {
-          console.log("movie: ", this.state.movies);
+          // console.log("movie: ", this.state.movies);
         });
       });
   }
@@ -34,7 +34,7 @@ class BuyTicket extends Component {
           .then((response) => response.json())
           .then((data) => {
             this.setState({ dates: data }, () => {
-              console.log("dates: ", this.state.dates);
+              // console.log("dates: ", this.state.dates);
             });
           });
       }
@@ -50,7 +50,7 @@ class BuyTicket extends Component {
           .then((response) => response.json())
           .then((data) => {
             this.setState({ times: data }, () => {
-              console.log("time: ", this.state.times);
+              // console.log("time: ", this.state.times);
             });
           });
       }
@@ -87,7 +87,7 @@ class BuyTicket extends Component {
     ));
     return (
       // <!-- ======= Mua vé nhanh ======= -->
-      <div className="bg-gradient-to-r from-gray-100 to-sky-900">
+      <div className="font-serif bg-gradient-to-r from-gray-100 to-sky-900">
         <div className="container grid grid-flow-col item-center ">
           <div className="grid grid-flow-row uppercase  item-center justify-content-center md:text-4xl text-lg font-bold p-2 text-red-500 mr-2 w-100">
             <p className="item-center">mua vé </p>

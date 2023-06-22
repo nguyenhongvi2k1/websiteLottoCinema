@@ -257,7 +257,7 @@ h1 > a {
   list-style: none;
 }
 .active {
-  background: rgb(250 204 21);
+  /* background: rgb(250 204 21); */
 }
 
 .active a {

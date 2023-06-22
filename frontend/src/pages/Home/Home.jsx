@@ -27,13 +27,13 @@ class Home extends Component {
       .then((response) => response.json())
       .then((data) => {
         this.setState({ movies: data }, () => {
-          console.log(this.state.movies);
+          // console.log(this.state.movies);
         });
       });
   }
   getSlides() {
     return this.state.movies.map((movie) => (
-      <div className="slide-movie-item">
+      <div className="font-serif slide-movie-item">
         <div className="movie-item n_2d hide">
           <div className="movie-pic">
             <img src={movie.poster} className="lazyload" alt="poster" />
@@ -59,6 +59,7 @@ class Home extends Component {
                   Mua vé
                 </a>
               </div>
+              
             </div>
           </div>
         </div>
@@ -80,21 +81,21 @@ class Home extends Component {
         <Header user={this.state.user} />
         <Banner />
         <BuyTicket />
-        <div className="container mt-3 mb-3 ">
+        <div className="font-serif container mt-3 mb-3 ">
           <div className="sub-tab text-center">
             <ul className="flex justify-center -space-x-14">
-              <li className="mix-blend-normal rounded-r-full z-10  bg-yellow-400">
+              <li className="flex mix-blend-normal rounded-r-full z-10  bg-yellow-400">
                 <a
                   href="/phim_dang_chieu"
-                  className="active rounded-r-full text-black cursor-auto text-sm md:text-2xl py-1 md:py-2 px-3 lg:px-6"
+                  className="m-auto  rounded-r-full text-black cursor-auto text-sm md:text-2xl py-1 md:py-2 px-2 lg:px-4"
                 >
                   Phim đang chiếu
                 </a>
               </li>
-              <li className="mix-blend-normal pl-10 rounded-r-full bg-amber-600">
+              <li className="flex mix-blend-normal pl-14 rounded-r-full bg-amber-600 ">
                 <a
                   href="/phim_sap_chieu"
-                  className=" rounded-r-full text-sm md:text-2xl py-1 md:py-2 px-3 md:px-6"
+                  className=" m-auto rounded-r-full text-sm md:text-2xl py-1 md:py-2 px-2 md:px-4"
                 >
                   Phim sắp chiếu
                 </a>
@@ -102,7 +103,7 @@ class Home extends Component {
             </ul>
           </div>
         </div>
-        <div className=" bg-amber-600">
+        <div className="font-serif bg-amber-600">
           <div className="container pt-2">
             <div className="flex align-items-center justify-content-center">
               <div className="pb-2 overflow-hidden">

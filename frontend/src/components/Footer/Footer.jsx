@@ -24,25 +24,25 @@ function Footer() {
               </p>
             </div>
             <a
-              href="/"
+              href="/phim_dang_chieu"
               className="text-white text-sm lg:text-xl hover:bg-amber-500"
             >
               Phim Đang Chiếu
             </a>
             <a
-              href="/"
+              href="/phim_sap_chieu"
               className="text-white text-sm lg:text-xl hover:bg-amber-500"
             >
               Phim Sắp Chiếu
             </a>
             <a
-              href="/"
+              href="/lich-chieu"
               className="text-white text-sm lg:text-xl hover:bg-amber-500"
             >
               Lịch Chiếu
             </a>
             <a
-              href="/"
+              href="/uu-dai"
               className="text-white text-sm lg:text-xl hover:bg-amber-500"
             >
               Ưu Đãi
@@ -55,13 +55,13 @@ function Footer() {
               </p>
             </div>
             <a
-              href="/"
+              href="/gioi-thieu"
               className="text-white text-sm lg:text-xl hover:bg-amber-500"
             >
               Giới Thiệu
             </a>
             <a
-              href="/"
+              href="/ho-tro"
               className="text-white text-sm lg:text-xl hover:bg-amber-500"
             >
               Liên Hệ

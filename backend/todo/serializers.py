@@ -1,4 +1,4 @@
-from .models import Username, Movie, Food, Premiere, DayShowtime, Showtime, OrderTicket, Question
+from .models import MyRating, Username, Movie, Food, Premiere, DayShowtime, Showtime, OrderTicket, Question
 from rest_framework import serializers
 from django.utils import timezone
 
@@ -14,6 +14,17 @@ class MovieSerializer(serializers.ModelSerializer):
         model = Movie
         fields = ['id', 'title', 'poster', 'trailer',
                   'category', 'director', 'actor', 'date_premiere', 'content']
+
+class RatingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MyRating
+        fields = ['id', 'id_user', 'id_movie', 'rating']
+
+class ListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MyRating
+        fields = ['id', 'id_user', 'id_movie', 'watch']
+
 
 
 class FoodSerializer(serializers.ModelSerializer):

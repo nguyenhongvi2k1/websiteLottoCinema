@@ -30,7 +30,7 @@ class ChiTiet extends Component {
         <Header user={this.state.user} />
         <Banner />
         <BuyTicket />
-        <div className="container mb-5">
+        <div className="font-serif container mb-5">
           <div className=" mt-3 mb-3 ">
             <div className="sub-tab text-center">
               <ul className="flex justify-center -space-x-14">
@@ -42,7 +42,7 @@ class ChiTiet extends Component {
                     Phim đang chiếu
                   </a>
                 </li>
-                <li className="mix-blend-normal pl-10 rounded-r-full bg-amber-600">
+                <li className="mix-blend-normal pl-14 rounded-r-full bg-amber-600">
                   <a href="/phim_sap_chieu" className=" rounded-r-full ">
                     Phim sắp chiếu
                   </a>
@@ -94,6 +94,50 @@ class ChiTiet extends Component {
               <p className="lg:text-base text-sm">
                 {this.state.id_movie.content}
               </p>
+              <div className="flex items-center mb-3 mt-2">
+              <svg aria-hidden="true" className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>First star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg aria-hidden="true" className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Second star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg aria-hidden="true" className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Third star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg aria-hidden="true" className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fourth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg aria-hidden="true" className="w-5 h-5 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fifth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <p className="ml-2 text-sm font-medium text-gray-900 dark:text-white mb-0">4.95 out of 5</p>
+            </div >
+            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">1,745 global ratings</p>
+            {/* <div className="flex items-center mt-4">
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">5 star</span>
+                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                    <div className="h-5 bg-yellow-400 rounded w-75"></div>
+                </div>
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">70%</span>
+            </div>
+            <div className="flex items-center mt-4">
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">4 star</span>
+                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                    <div className="h-5 bg-yellow-400 rounded w-20" ></div>
+                </div>
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">17%</span>
+            </div>
+            <div className="flex items-center mt-4">
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">3 star</span>
+                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                    <div className="h-5 bg-yellow-400 rounded w-10" ></div>
+                </div>
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">8%</span>
+            </div>
+            <div className="flex items-center mt-4">
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">2 star</span>
+                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                    <div className="h-5 bg-yellow-400 rounded w-5" ></div>
+                </div>
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">4%</span>
+            </div>
+            <div className="flex items-center mt-4">
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">1 star</span>
+                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                    <div className="h-5 bg-yellow-400 rounded w-1" ></div>
+                </div>
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">1%</span>
+            </div>    */}
               <div className="w-full bottom-0">
                 <div className=" text-center -space-x-10">
                   <a
@@ -110,6 +154,7 @@ class ChiTiet extends Component {
                   </a>
                 </div>
               </div>
+
             </div>
           </div>
           <div className=" bg-gray-900	rounded-lg block md:hidden">
@@ -153,6 +198,7 @@ class ChiTiet extends Component {
               </div>
               <p className="lg:text-base text-sm">
                 {this.state.id_movie.content}
+               
               </p>
               <div className="w-full bottom-0">
                 <div className=" text-center space-x-5">
@@ -170,8 +216,59 @@ class ChiTiet extends Component {
                   </a>
                 </div>
               </div>
+
+
             </div>
+            <div className="flex items-center mb-3">
+              <svg aria-hidden="true" className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>First star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg aria-hidden="true" className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Second star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg aria-hidden="true" className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Third star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg aria-hidden="true" className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fourth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg aria-hidden="true" className="w-5 h-5 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fifth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <p className="ml-2 text-sm font-medium text-gray-900 dark:text-white">4.95 out of 5</p>
+            </div>
+            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">1,745 global ratings</p>
+            {/* <div className="flex items-center mt-4">
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">5 star</span>
+                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                    <div className="h-5 bg-yellow-400 rounded w-75"></div>
+                </div>
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">70%</span>
+            </div>
+            <div className="flex items-center mt-4">
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">4 star</span>
+                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                    <div className="h-5 bg-yellow-400 rounded w-20" ></div>
+                </div>
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">17%</span>
+            </div>
+            <div className="flex items-center mt-4">
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">3 star</span>
+                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                    <div className="h-5 bg-yellow-400 rounded w-10" ></div>
+                </div>
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">8%</span>
+            </div>
+            <div className="flex items-center mt-4">
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">2 star</span>
+                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                    <div className="h-5 bg-yellow-400 rounded w-5" ></div>
+                </div>
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">4%</span>
+            </div>
+            <div className="flex items-center mt-4">
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">1 star</span>
+                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                    <div className="h-5 bg-yellow-400 rounded w-1" ></div>
+                </div>
+                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">1%</span>
+            </div>    */}
           </div>
+
+
+
+
+
         </div>
         <Footer />
       </>

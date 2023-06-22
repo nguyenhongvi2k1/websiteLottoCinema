@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import queryString from "query-string";
@@ -195,7 +195,7 @@ class Payment extends Component {
             referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             body: JSON.stringify(body_data), // body data type must match "Content-Type" header
           }).then((res) => {
-            if (res.status == 200) {
+            if (res.status === 200) {
               window.location.href = "/";
               toast.success(
                 "Bạn đã thanh toán thành công. Chúc bạn xem phim vui vẻ <3"
@@ -206,9 +206,9 @@ class Payment extends Component {
       };
 
       //capture likely error
-      const onError = (data, actions) => {
-        this.setState({ ErrorMessage: "An Error occured with your payment " });
-      };
+      // const onError = (data, actions) => {
+      //   this.setState({ ErrorMessage: "An Error occured with your payment " });
+      // };
 
       return (
         <div className="container ">

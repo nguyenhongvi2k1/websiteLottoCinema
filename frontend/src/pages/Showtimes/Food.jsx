@@ -61,74 +61,74 @@ class Combo extends Component {
 
   handleAddCombo_1() {
     this.setState({ combo_1: this.state.combo_1 + 1 });
-    this.setState({ sum_1: this.state.sum_1 + 65000 });
+    this.setState({ sum_1: this.state.sum_1 + 150000 });
   }
   handleSubCombo_1() {
     this.setState({
       combo_1: this.state.combo_1 > 0 ? this.state.combo_1 - 1 : 0,
     });
     this.setState({
-      sum_1: this.state.sum_1 > 0 ? this.state.sum_1 - 65000 : 0,
+      sum_1: this.state.sum_1 > 0 ? this.state.sum_1 - 150000 : 0,
     });
   }
   handleAddCombo_2() {
     this.setState({ combo_2: this.state.combo_2 + 1 });
-    this.setState({ sum_2: this.state.sum_2 + 80000 });
+    this.setState({ sum_2: this.state.sum_2 + 200000 });
   }
   handleSubCombo_2() {
     this.setState({
       combo_2: this.state.combo_2 > 0 ? this.state.combo_2 - 1 : 0,
     });
     this.setState({
-      sum_2: this.state.sum_2 > 0 ? this.state.sum_2 - 80000 : 0,
+      sum_2: this.state.sum_2 > 0 ? this.state.sum_2 - 200000 : 0,
     });
   }
   handleAddCombo_3() {
     this.setState({ combo_3: this.state.combo_3 + 1 });
-    this.setState({ sum_3: this.state.sum_3 + 50000 });
+    this.setState({ sum_3: this.state.sum_3 + 70000 });
   }
   handleSubCombo_3() {
     this.setState({
       combo_3: this.state.combo_3 > 0 ? this.state.combo_3 - 1 : 0,
     });
     this.setState({
-      sum_3: this.state.sum_3 > 0 ? this.state.sum_3 - 50000 : 0,
+      sum_3: this.state.sum_3 > 0 ? this.state.sum_3 - 70000 : 0,
     });
   }
   handleAddCombo_4() {
     this.setState({ combo_4: this.state.combo_4 + 1 });
-    this.setState({ sum_4: this.state.sum_4 + 65000 });
+    this.setState({ sum_4: this.state.sum_4 + 90000 });
   }
   handleSubCombo_4() {
     this.setState({
       combo_4: this.state.combo_4 > 0 ? this.state.combo_4 - 1 : 0,
     });
     this.setState({
-      sum_4: this.state.sum_4 > 0 ? this.state.sum_4 - 65000 : 0,
+      sum_4: this.state.sum_4 > 0 ? this.state.sum_4 - 90000 : 0,
     });
   }
   handleAddCombo_5() {
     this.setState({ combo_5: this.state.combo_5 + 1 });
-    this.setState({ sum_5: this.state.sum_5 + 20000 });
+    this.setState({ sum_5: this.state.sum_5 + 10000 });
   }
   handleSubCombo_5() {
     this.setState({
       combo_5: this.state.combo_5 > 0 ? this.state.combo_5 - 1 : 0,
     });
     this.setState({
-      sum_5: this.state.sum_5 > 0 ? this.state.sum_5 - 20000 : 0,
+      sum_5: this.state.sum_5 > 0 ? this.state.sum_5 - 10000 : 0,
     });
   }
   handleAddCombo_6() {
     this.setState({ combo_6: this.state.combo_6 + 1 });
-    this.setState({ sum_6: this.state.sum_6 + 30000 });
+    this.setState({ sum_6: this.state.sum_6 + 10000 });
   }
   handleSubCombo_6() {
     this.setState({
       combo_6: this.state.combo_6 > 0 ? this.state.combo_6 - 1 : 0,
     });
     this.setState({
-      sum_6: this.state.sum_6 > 0 ? this.state.sum_6 - 30000 : 0,
+      sum_6: this.state.sum_6 > 0 ? this.state.sum_6 - 10000 : 0,
     });
   }
   componentDidMount() {

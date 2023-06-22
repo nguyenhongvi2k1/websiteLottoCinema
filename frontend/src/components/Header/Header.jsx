@@ -73,13 +73,23 @@ function Header(props) {
       referrerPolicy: "no-referrer",
       body: JSON.stringify(body_data),
     })
+
       .then((response) => response.json())
       .then((response) => {
-        window.localStorage.setItem("user", JSON.stringify({ response }));
-        window.location.href = "/";
-        toast.success(
-          "Bạn đã đăng ký thành công. Hãy đăng nhập để nhận ưu đãi tốt nhất từ LOTTO Cinema!!!"
-        );
+
+        // if (response.status === 200) {
+          console.log(response)
+          window.localStorage.setItem("user", JSON.stringify({ response }))
+          window.location.href = "/";
+          toast.success(
+            "Bạn đã đăng ký thành công. Hãy đăng nhập để nhận ưu đãi tốt nhất từ LOTTO Cinema!!!"
+          );
+        // }
+        // else{
+          // toast.error(
+            // "Đăng nhập không thành công???"
+          // );
+        // }
       });
   };
   const onSubmitRegister = async () => {
@@ -131,7 +141,7 @@ function Header(props) {
 
   if (isLoggedIn) {
     component = (
-      <div className="flex px-2 py-2 justify-content-center  ">
+      <div className="font-serif flex px-2 py-2 justify-content-center  ">
         <div className="flex">
           <button onClick={() => setShowProfile(!showProfile)}>
             <img className="h-10 w-10 rounded-full" src={avt} alt="avt" />
@@ -147,7 +157,7 @@ function Header(props) {
           </div>
         </div>
         {showProfile && (
-          <div className="  top-1/2 lg:right-24 absolute z-10 ">
+          <div className="font-serif  top-1/2 lg:right-24 absolute z-10 ">
             <div className="bg-white rounded-lg p-4 m-2.5">
               <div className="flex align-items-center">
                 <img src={avt} alt="avt" className="w-12  rounded-full" />
@@ -216,14 +226,14 @@ function Header(props) {
         <button
           type="button"
           onClick={handleShowLogin}
-          className="bg-gray-900 font-bold rounded-full capitalize border-2 border-gray-900 p-2 m-2 text-white hover:bg-amber-500"
+          className="font-serif bg-gray-900 font-bold rounded-full capitalize border-2 border-gray-900 p-2 m-2 text-white hover:bg-amber-500"
         >
           đăng nhập
         </button>
         <Modal show={showLogin} onHide={handleCloseLogin}>
           <Modal.Header closeButton></Modal.Header>
           <Modal.Body>
-            <form className="text-center">
+            <form className="text-center font-serif">
               <h2 className="font-bold">Đăng nhập</h2>
               <div className="flex justify-content-center">
                 <img
@@ -300,14 +310,14 @@ function Header(props) {
         <button
           type="button"
           onClick={handleShowRegister}
-          className="bg-gray-900 font-bold rounded-full capitalize border-2 border-gray-900 p-2 m-2 text-white hover:bg-amber-500"
+          className="font-serif bg-gray-900 font-bold rounded-full capitalize border-2 border-gray-900 p-2 m-2 text-white hover:bg-amber-500"
         >
           đăng ký
         </button>
         <Modal show={showRegister} onHide={handleCloseRegister}>
           <Modal.Header closeButton></Modal.Header>
           <Modal.Body>
-            <form className="text-center">
+            <form className="font-serif text-center">
               <h2 className="font-bold">Đăng ký</h2>
               <div className="flex justify-content-center">
                 <img
@@ -392,9 +402,9 @@ function Header(props) {
   }
 
   useLayoutEffect(() => {
-    console.log(div);
+    // console.log(div);
     const divAnimate = div.current.getBoundingClientRect().top;
-    console.log(divAnimate);
+    // console.log(divAnimate);
     const onScroll = () => {
       if (divAnimate < window.scrollY) {
         div.current.style.position = "fixed";
@@ -454,7 +464,7 @@ function Header(props) {
               <div className={isNavExpanded ? "block" : "hidden"}>
                 <Offcanvas.Header closeButton></Offcanvas.Header>
                 <Offcanvas.Body>
-                  <Nav className="justify-content-end flex-grow-1 pe-3">
+                  <Nav className="justify-content-end flex-grow-1 pe-3 font-serif">
                     <Nav.Item>{component}</Nav.Item>
                     <Nav.Link href="/">Trang chủ</Nav.Link>
                     <Nav.Link href="/phim_dang_chieu">Phim</Nav.Link>
@@ -493,48 +503,50 @@ function Header(props) {
               <div className=" flex items-center align-content-center text-white justify-content-end align-items-end">
                 <a
                   href="/"
-                  className="p-2.5 bg-amber-500 rounded-full text-white mr-3 hover:bg-amber-500"
+                  className="p-2.5 bg-violet-900 rounded-full text-white mr-3 hover:bg-amber-500"
                 >
                   <FaHome className="text-lg lg:text-lg" />
+
                 </a>
                 <div className="flex lg:w-75 w-auto rounded-full border-2 items-center justify-content-around">
                   <a
                     href="/phim_dang_chieu"
-                    className="text-white flex items-center font-semibold text-sm lg:text-lg hover:bg-amber-500 hover:rounded-l-full"
+                    className="font-serif text-white flex items-center font-semibold text-sm lg:text-lg hover:bg-amber-500 hover:rounded-l-full"
                   >
-                    <FaFilm className="mr-2 hidden lg:block" /> Phim
+                    <FaFilm className="mr-2 hidden lg:block" />
+                     Phim
                   </a>
                   <a
                     href="/lich-chieu"
-                    className="text-white flex  items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500"
+                    className="font-serif text-white flex  items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500"
                   >
                     <BsCalendar className="mr-2 hidden lg:block" />
                     Lịch chiếu
                   </a>
                   <a
                     href="/uu-dai"
-                    className="text-white flex items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500"
+                    className="font-serif text-white flex items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500"
                   >
                     <BsGift className="mr-2 hidden lg:block" />
                     Ưu đãi
                   </a>
                   <a
                     href="/gia-ve"
-                    className="text-white flex items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500"
+                    className="font-serif text-white flex items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500"
                   >
                     <FaRegMoneyBillAlt className="mr-2 hidden lg:block" />
                     Giá vé
                   </a>
                   <a
                     href="/gioi-thieu"
-                    className="text-white flex items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500"
+                    className="font-serif text-white flex items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500"
                   >
                     <BsInfoCircle className="mr-2 hidden lg:block" />
                     Giới thiệu
                   </a>
                   <a
                     href="/ho-tro"
-                    className="text-white flex items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500 hover:rounded-r-full"
+                    className="font-serif text-white flex items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500 hover:rounded-r-full"
                   >
                     <BsQuestionSquare className="mr-2 hidden lg:block" />
                     Hỗ trợ

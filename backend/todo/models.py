@@ -1,4 +1,8 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import User
+
+
 
 class Username(models.Model):
     created = models.DateTimeField(auto_now_add=True)
@@ -31,6 +35,17 @@ class Movie(models.Model):
     def __str__(self):
         return str(self.title)
 
+class MyRating(models.Model):
+    id_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    rating = models.IntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+
+class MyList(models.Model):
+    id_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    watch = models.BooleanField(default=False)
+    
+
 class Food(models.Model):
     name = models.CharField(max_length=200)
     price = models.IntegerField(default=0)
@@ -61,7 +76,7 @@ class Showtime(models.Model):
         Movie, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.fk_movie)
 
 class OrderTicket(models.Model):
     fk_username = models.ForeignKey(
