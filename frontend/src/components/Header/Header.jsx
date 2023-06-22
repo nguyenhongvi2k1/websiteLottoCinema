@@ -10,21 +10,18 @@ import "react-toastify/dist/ReactToastify.css";
 import Nav from "react-bootstrap/Nav";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import {
-  FaFilm,
+  Link,
+  useRouteMatch
+} from "react-router-dom";
+
+import {
   FaHome,
-  FaRegMoneyBillAlt,
   FaSearch,
   FaUserEdit,
 } from "react-icons/fa";
-import {
-  BsCalendar,
-  BsGift,
-  BsInfoCircle,
-  BsQuestionSquare,
-} from "react-icons/bs";
 import { IoIosSettings, IoMdHelpCircle, IoIosLogOut } from "react-icons/io";
 
-function Header(props) {
+export default function Header(props) {
   const div = useRef();
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
@@ -501,56 +498,14 @@ function Header(props) {
                 <div className="">{component}</div>
               </div>
               <div className=" flex items-center align-content-center text-white justify-content-end align-items-end">
-                <a
-                  href="/"
-                  className="p-2.5 bg-violet-900 rounded-full text-white mr-3 hover:bg-amber-500"
-                >
-                  <FaHome className="text-lg lg:text-lg" />
-
-                </a>
                 <div className="flex lg:w-75 w-auto rounded-full border-2 items-center justify-content-around">
-                  <a
-                    href="/phim_dang_chieu"
-                    className="font-serif text-white flex items-center font-semibold text-sm lg:text-lg hover:bg-amber-500 hover:rounded-l-full"
-                  >
-                    <FaFilm className="mr-2 hidden lg:block" />
-                     Phim
-                  </a>
-                  <a
-                    href="/lich-chieu"
-                    className="font-serif text-white flex  items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500"
-                  >
-                    <BsCalendar className="mr-2 hidden lg:block" />
-                    Lịch chiếu
-                  </a>
-                  <a
-                    href="/uu-dai"
-                    className="font-serif text-white flex items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500"
-                  >
-                    <BsGift className="mr-2 hidden lg:block" />
-                    Ưu đãi
-                  </a>
-                  <a
-                    href="/gia-ve"
-                    className="font-serif text-white flex items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500"
-                  >
-                    <FaRegMoneyBillAlt className="mr-2 hidden lg:block" />
-                    Giá vé
-                  </a>
-                  <a
-                    href="/gioi-thieu"
-                    className="font-serif text-white flex items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500"
-                  >
-                    <BsInfoCircle className="mr-2 hidden lg:block" />
-                    Giới thiệu
-                  </a>
-                  <a
-                    href="/ho-tro"
-                    className="font-serif text-white flex items-center  font-semibold text-sm lg:text-lg hover:bg-amber-500 hover:rounded-r-full"
-                  >
-                    <BsQuestionSquare className="mr-2 hidden lg:block" />
-                    Hỗ trợ
-                  </a>
+                <OldSchoolMenuLink activeOnlyWhenExact={true} to="/" label={  <FaHome className="text-lg lg:text-lg"/>} /> 
+                <OldSchoolMenuLink to="/phim_dang_chieu" label="Phim" />
+                <OldSchoolMenuLink to="/lich-chieu" label="Lịch chiếu" />
+                <OldSchoolMenuLink to="/uu-dai" label="Ưu đãi" />
+                <OldSchoolMenuLink to="/gia-ve" label="Giá vé" />
+                <OldSchoolMenuLink to="/gioi-thieu" label="Giới thiệu" />
+                <OldSchoolMenuLink to="/ho-tro" label="Hỗ trợ" />
                 </div>
               </div>
             </div>
@@ -560,5 +515,16 @@ function Header(props) {
     </header>
   );
 }
+function OldSchoolMenuLink({ label, to, activeOnlyWhenExact }) {
+  let match = useRouteMatch({
+    path: to,
+    exact: activeOnlyWhenExact
+  });
 
-export default Header;
+  return (
+    <div className={match ? "flex items-center text-sm lg:text-lg bg-amber-500 rounded-full" : "flex items-center text-sm lg:text-lg hover:bg-sky-900 rounded-full"}>
+      {match && ""}
+      <Link to={to} className = "font-serif  font-semibold text-white rounded-full">{label}</Link>
+    </div>
+  );
+}

@@ -103,41 +103,6 @@ class ChiTiet extends Component {
               <p className="ml-2 text-sm font-medium text-gray-900 dark:text-white mb-0">4.95 out of 5</p>
             </div >
             <p className="text-sm font-medium text-gray-500 dark:text-gray-400">1,745 global ratings</p>
-            {/* <div className="flex items-center mt-4">
-                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">5 star</span>
-                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                    <div className="h-5 bg-yellow-400 rounded w-75"></div>
-                </div>
-                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">70%</span>
-            </div>
-            <div className="flex items-center mt-4">
-                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">4 star</span>
-                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                    <div className="h-5 bg-yellow-400 rounded w-20" ></div>
-                </div>
-                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">17%</span>
-            </div>
-            <div className="flex items-center mt-4">
-                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">3 star</span>
-                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                    <div className="h-5 bg-yellow-400 rounded w-10" ></div>
-                </div>
-                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">8%</span>
-            </div>
-            <div className="flex items-center mt-4">
-                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">2 star</span>
-                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                    <div className="h-5 bg-yellow-400 rounded w-5" ></div>
-                </div>
-                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">4%</span>
-            </div>
-            <div className="flex items-center mt-4">
-                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">1 star</span>
-                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                    <div className="h-5 bg-yellow-400 rounded w-1" ></div>
-                </div>
-                <span className="text-sm font-medium text-blue-600 dark:text-blue-500">1%</span>
-            </div>    */}
               <div className="w-full bottom-0">
                 <div className=" text-center -space-x-10">
                   <a

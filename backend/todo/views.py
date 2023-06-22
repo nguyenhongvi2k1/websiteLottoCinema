@@ -1,7 +1,6 @@
 # from turtle import pd
 from audioop import avg
 from django.http import Http404
-import datetime
 from rest_framework.response import Response
 from rest_framework import viewsets,status, generics
 from django.shortcuts import redirect, render
