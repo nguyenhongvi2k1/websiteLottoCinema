@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 
 
@@ -17,34 +18,33 @@ class Username(models.Model):
 
     class Meta:
         ordering = ['created']
+        
 
 class Movie(models.Model):
     title = models.CharField(max_length=200, help_text="Nhập tên bộ phim")
-    poster = models.ImageField(null=True, blank=True)
-    trailer = models.URLField()
+    poster = models.URLField(null=True, blank=True,max_length=255)
+    trailer = models.URLField(max_length=255)
     category = models.CharField(
-        max_length=200, help_text="Nhập tên thể loại phim")
+        max_length=255, help_text="Nhập tên thể loại phim")
     actor = models.CharField(
-        max_length=200, help_text="Nhập tên diễn viên")
+        max_length=500, help_text="Nhập tên diễn viên")
     director = models.CharField(
-        max_length=200, help_text="Nhập tên đạo diễn")
+        max_length=255, help_text="Nhập tên đạo diễn")
     date_premiere = models.DateField(blank=True, null=True)
     content = models.TextField(help_text="Nhập nội dung bộ phim")
-    # created_date = models.BooleanField()
 
     def __str__(self):
         return str(self.title)
 
 class MyRating(models.Model):
-    id_user = models.ForeignKey(User, on_delete=models.CASCADE)
-    id_movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    id_user = models.ForeignKey(Username, on_delete=models.CASCADE, null=True)
+    id_movie = models.ForeignKey(Movie, on_delete=models.CASCADE, null=True)
     rating = models.IntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
-
-class MyList(models.Model):
-    id_user = models.ForeignKey(User, on_delete=models.CASCADE)
-    id_movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    watch = models.BooleanField(default=False)
-    
+    timestamp = models.IntegerField(default=0)
+    def __str__(self):
+        return str(self.id_movie)
+    class Meta:
+        ordering = ['rating']
 
 class Food(models.Model):
     name = models.CharField(max_length=200)
@@ -84,7 +84,7 @@ class OrderTicket(models.Model):
     fk_movie = models.ForeignKey(
         Movie, on_delete=models.CASCADE)
     fk_food = models.ForeignKey(
-        Food, on_delete=models.CASCADE)
+        Food, on_delete=models.CASCADE, null=True)
     fk_dayshowtime = models.ForeignKey(
         DayShowtime, on_delete=models.CASCADE)
     fk_time = models.ForeignKey(

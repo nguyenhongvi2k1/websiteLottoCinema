@@ -50,7 +50,7 @@ class Cards_Schedule_number extends Component {
               <div className="grid grid-flow-row-dense grid-cols-3 grid-rows-1 gap-2   bg-amber-600 rounded-sm shadow-lg h-auto">
                 <img
                   className="border border-2 w-full"
-                  src={"http://localhost:8000" + showtime.fk_movie.poster}
+                  src={showtime.fk_movie.poster}
                   alt="poster"
                 />
                 <div className="col-span-2 align-items-start">

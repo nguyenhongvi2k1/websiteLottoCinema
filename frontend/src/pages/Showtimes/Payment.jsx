@@ -13,7 +13,9 @@ class Payment extends Component {
       menu: this.props.location.search,
       user: null,
       id_user: null,
+      id_food: null,
       sum: 0,
+      sum_food: 0,
       showtime: [],
       food: [],
       showpayment: false,
@@ -46,7 +48,6 @@ class Payment extends Component {
     const id_food = queryString.parse(this.state.menu).id_food;
     const food = queryString.parse(this.state.menu).food;
 
-    // console.log(id_movie, id_dayshowtime, id_time);
     fetch(
       `http://localhost:8000/api/orderchair/?id_movie=${id_movie}&&id_dayshowtime=${id_dayshowtime}&id_time=${id_time}`
     )
@@ -56,19 +57,31 @@ class Payment extends Component {
           // console.log(this.state.showtime);
         })
       );
-
-    fetch(`http://localhost:8000/api/getfood/${id_food}`)
+      console.log(id_food)
+      if(id_food === "undefined"){
+      this.setState({
+        sum:
+          parseInt(queryString.parse(this.state.menu).summary),
+          sum_food:0,
+          id_food: null
+      });
+    } else {
+      fetch(`http://localhost:8000/api/getfood/${id_food}`)
       .then((response) => response.json())
       .then((data) => {
         this.setState({ food: data }, () => {
-          // console.log(this.state.food);
+          console.log("food",this.state.food);
           this.setState({
             sum:
               parseInt(queryString.parse(this.state.menu).summary) +
               parseInt(this.state.food.price) * parseInt(food),
+            sum_food: parseInt(this.state.food.price) * parseInt(food),
+            id_food: id_food
           });
         });
       });
+    }
+
   }
   changeShowPayment() {
     this.setState({ showpayment: true });
@@ -76,55 +89,17 @@ class Payment extends Component {
 
   onSubmit() {
     this.setState({ showpayment: !this.state.showpayment });
-    // const id_user = this.state.user[0]?.id;
-    // const id_movie = queryString.parse(this.state.menu).id_movie;
-    // const id_food = queryString.parse(this.state.menu).id_food;
-    // const id_dayshowtime = queryString.parse(this.state.menu).id_dayshowtime;
-    // const id_time = queryString.parse(this.state.menu).id_time;
-    // const quantity_ticket = queryString.parse(this.state.menu).quantity_ticket;
-    // const summary = this.state.sum;
-    // const chair = queryString.parse(this.state.menu).chair;
-    // const body_data = {
-    //   id_user,
-    //   id_movie,
-    //   id_food,
-    //   id_dayshowtime,
-    //   id_time,
-    //   quantity_ticket,
-    //   summary,
-    //   chair,
-    // };
-    // console.log("body_data : ", body_data);
-    // fetch(`http://localhost:8000/api/postpaymentticket/`, {
-    //   method: "POST", // *GET, POST, PUT, DELETE, etc.
-    //   mode: "cors", // no-cors, *cors, same-origin
-    //   cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    //   credentials: "same-origin", // include, *same-origin, omit
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(body_data),
-    // })
-    //   .then((res) => {
-    //     if (res.status === 200) {
-    //       window.location.href = "/";
-    //       toast.success(
-    //         "Bạn đã thanh toán thành công. Chúc bạn xem phim vui vẻ <3"
-    //       );
-    //     }
-    //   });
   }
   render() {
     const moneyFood = Math.floor(
-      (parseInt(this.state.food.price) *
-        parseInt(queryString.parse(this.state.menu).food)) /
+     (this.state.sum_food) /
         23000
     );
     const moneyChair = Math.floor(
       parseInt(queryString.parse(this.state.menu).summary) / 23000
     );
 
-    console.log(moneyChair, moneyFood);
+    // console.log(moneyChair, moneyFood);
 
     const componet = this.state.showtime?.map((showtime) => {
       const createOrder = (data, actions) => {
@@ -151,37 +126,44 @@ class Payment extends Component {
           })
           .then((orderID) => {
             this.setState({ orderID: this.state.orderID });
-            console.log(this.state.orderID);
+            // console.log(this.state.orderID);
             return orderID;
           });
       };
       const id_user = queryString.parse(this.state.menu).id_user;
       const id_movie = queryString.parse(this.state.menu).id_movie;
-      const id_food = queryString.parse(this.state.menu).id_food;
+      // const id_food = queryString.parse(this.state.menu).id_food;
+      const id_food = this.state.id_food
       const id_dayshowtime = queryString.parse(this.state.menu).id_dayshowtime;
       const id_time = queryString.parse(this.state.menu).id_time;
       const quantity_ticket = queryString.parse(
         this.state.menu
       ).quantity_ticket;
       const summary = this.state.sum;
+      // const id_food = null
       const chair = queryString.parse(this.state.menu).chair;
-      const body_data = {
-        id_user,
-        id_movie,
-        id_food,
-        id_dayshowtime,
-        id_time,
-        quantity_ticket,
-        summary,
-        chair,
-      };
+      // if(id_foods === "undefined"){
+      //   id_food = null
+      //   } else{
+      //     id_food = id_foods
+      //   }
+        const body_data = {
+          id_user,
+          id_movie,
+          id_food,
+          id_dayshowtime,
+          id_time,
+          quantity_ticket,
+          summary,
+          chair,
+        };
       console.log("body_data : ", body_data);
       // check Approval
       const onApprove = (data, actions) => {
         return actions.order.capture().then(function (details) {
           const { payer } = details;
           console.log(payer);
-
+          
           fetch(`http://localhost:8000/api/postpaymentticket/`, {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin
@@ -309,7 +291,7 @@ class Payment extends Component {
                     <div className="confirm-film-pic">
                       <img
                         src={
-                          "http://localhost:8000" + showtime?.fk_movie?.poster
+                         showtime?.fk_movie?.poster
                         }
                         alt="ảnh phim"
                       />
@@ -350,8 +332,7 @@ class Payment extends Component {
                       </div>
                       <div className="confirm-value">
                         <span className="md:text-base text-xs">
-                          {parseInt(this.state.food?.price) *
-                            parseInt(queryString.parse(this.state.menu).food)}
+                          {this.state.sum_food}
                         </span>
                         <sup>đ</sup>
                       </div>

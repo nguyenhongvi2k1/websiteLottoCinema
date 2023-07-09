@@ -20,14 +20,14 @@ class BuyTicket extends Component {
       .then((response) => response.json())
       .then((data) => {
         this.setState({ movies: data }, () => {
-          console.log("movie: ", this.state.movies);
+          // console.log("movie: ", this.state.movies);
         });
       });
       fetch(`http://localhost:8000/api/movies/playing/`)
       .then((response) => response.json())
       .then((data) => {
         this.setState({ movies: data }, () => {
-          console.log("movie: ", this.state.movies);
+          // console.log("movie: ", this.state.movies);
         });
       });
   }
@@ -41,7 +41,7 @@ class BuyTicket extends Component {
           .then((response) => response.json())
           .then((data) => {
             this.setState({ dates: data }, () => {
-              console.log("dates: ", this.state.dates);
+              // console.log("dates: ", this.state.dates);
             });
           });
       }

@@ -267,12 +267,14 @@ class ChooseChair extends Component {
     const jsonStr = localStorage.getItem("user");
     if (jsonStr != null) {
       this.setState({ id_user: JSON.parse(jsonStr) }, () => {
+        console.log("vghvhg",this.state.id_user)
         fetch(
           `http://localhost:8000/api/getuser/?email=${this.state.id_user?.response?.email}`
         )
           .then((res) => res.json())
           .then((data) =>
             this.setState({ user: data }, () => {
+              // console.log(data);
               // console.log(this.state.user);
             })
           );
@@ -297,7 +299,7 @@ class ChooseChair extends Component {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         data.map((data) => {
           this.setState({
             seatChoosed: this.state.seatChoosed.concat(data.chair),
@@ -3074,7 +3076,7 @@ class ChooseChair extends Component {
     });
     return (
       <div>
-        <Header user={this.state.user} />
+        <Header user={this.state.id_user} />
         <div>{componet}</div>
         <Footer />
       </div>

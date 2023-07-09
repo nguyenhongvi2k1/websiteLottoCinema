@@ -22,7 +22,25 @@ class Home extends Component {
     const jsonStr = localStorage.getItem("user");
     if (jsonStr != null) {
       this.setState({ user: JSON.parse(jsonStr) });
+      // console.log(JSON.parse(jsonStr).response)
+      fetch(
+        `http://localhost:8000/api/getuser/?email=${JSON.parse(jsonStr).response?.email}`
+      )
+        .then((res) => res.json())
+        .then((data) =>
+            {
+              // console.log(data[0])
+              fetch(`http://localhost:8000/api/recomender/?id_user=${data[0].id}`)
+              .then((response) => response.json())
+              .then((data) => {
+                // this.setState({ data: data }, () => {
+                  console.log(JSON.parse(data));
+                // });
+              });
+      
+            })
     }
+
     fetch("http://localhost:8000/api/movies/playing/")
       .then((response) => response.json())
       .then((data) => {

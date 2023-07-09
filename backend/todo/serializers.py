@@ -16,15 +16,11 @@ class MovieSerializer(serializers.ModelSerializer):
                   'category', 'director', 'actor', 'date_premiere', 'content']
 
 class RatingSerializer(serializers.ModelSerializer):
+    id_user = UsernameSerializer()
+    id_movie = MovieSerializer()
     class Meta:
         model = MyRating
-        fields = ['id', 'id_user', 'id_movie', 'rating']
-
-class ListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MyRating
-        fields = ['id', 'id_user', 'id_movie', 'watch']
-
+        fields = ['id', 'id_user', 'id_movie', 'rating', 'timestamp']
 
 
 class FoodSerializer(serializers.ModelSerializer):
