@@ -16,6 +16,7 @@ class Home extends Component {
     this.state = {
       movies: [],
       user: null,
+      rs: []
     };
   }
   componentDidMount() {
@@ -23,6 +24,7 @@ class Home extends Component {
     if (jsonStr != null) {
       this.setState({ user: JSON.parse(jsonStr) });
       // console.log(JSON.parse(jsonStr).response)
+
       fetch(
         `http://localhost:8000/api/getuser/?email=${JSON.parse(jsonStr).response?.email}`
       )
@@ -30,13 +32,22 @@ class Home extends Component {
         .then((data) =>
             {
               // console.log(data[0])
-              fetch(`http://localhost:8000/api/recomender/?id_user=${data[0].id}`)
-              .then((response) => response.json())
-              .then((data) => {
-                // this.setState({ data: data }, () => {
-                  console.log(JSON.parse(data));
-                // });
-              });
+              fetch(`http://localhost:8000/api/recomender/?id_user=${data[0].id}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                },
+            })
+               .then(response => response.json())
+               .then(response => {
+                const text = JSON.stringify(response)
+                this.setState({rs: eval(text)}, () => {
+                  this.state.rs.map(rs => {
+                    // console.log(rs.movieId);
+                  })
+                })
+                // console.log(JSON.parse(text.movieId))
+               })
       
             })
     }
@@ -84,6 +95,41 @@ class Home extends Component {
       </div>
     ));
   }
+  getSlidesRS() {
+    return this.state.rs.map((rs) => (
+      <div className="font-serif slide-movie-item">
+        <div className="movie-item n_2d hide">
+          <div className="movie-pic">
+            <img src={rs.poster} className="lazyload" alt="poster" />
+          </div>
+          <div className="movie-txt">
+            <h3 className="md:text-lg text-base">{rs.title} </h3>
+          </div>
+          <div className="movie-over">
+            <p className="md:text-base text-ms">{rs.content}</p>
+            <span className="atc">...</span>
+            <div className="flex flex-col align-items-center justify-content-center text-center bottom-0">
+              <a href={`/phim/${rs.id}`} className="detail-link">
+                Chi tiết
+              </a>
+              <a href={`/trailer/${rs.id}`} className="trailler-btn text-sm">
+                Xem Trailer
+              </a>
+              <div className="border rounded-full bg-rose-500	 mt-5 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-amber-500 duration-300">
+                <a
+                  href={`/movie/${rs.id}`}
+                  className="uppercase text-sm font-bold text-neutral-200	hover:text-white "
+                >
+                  Mua vé
+                </a>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    ));
+  }
   render() {
     const settings = {
       infinite: true,
@@ -94,6 +140,7 @@ class Home extends Component {
       autoplaySpeed: 1500,
     };
     const slides = this.getSlides();
+    const slidesRS = this.getSlidesRS();
     return (
       <>
         <Header user={this.state.user} />
@@ -126,6 +173,19 @@ class Home extends Component {
             <div className="flex align-items-center justify-content-center">
               <div className="pb-2 overflow-hidden">
                 <Slider {...settings}>{slides}</Slider>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr></hr>
+        <div className="container flex rounded-full border-inherit">        
+          <h3 className="flex font-serif uppercase font-bold text-white m-auto text-lg md:text-2xl">Phim được đề xuất</h3>
+        </div>
+        <div className="font-serif bg-amber-600">
+          <div className="container pt-2">
+            <div className="flex align-items-center justify-content-center">
+              <div className="pb-2 overflow-hidden">
+                <Slider {...settings}>{slidesRS}</Slider>
               </div>
             </div>
           </div>

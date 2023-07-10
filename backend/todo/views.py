@@ -254,7 +254,7 @@ def categoryRS(request):
                 C = [item.id_movie.title, item.rating]
                 D += [C]
             inputMovies = pd.DataFrame(D, columns=['title', 'rating'])
-            print("Watched Movie bt user DataFrame")
+            # print("Watched Movie bt user DataFrame")
             inputMovies['rating'] = inputMovies["rating"].astype(str).astype(np.int64)
             # print(inputMovies.dtypes)
 
@@ -316,9 +316,9 @@ def categoryRS(request):
 
             recommendation_df = recommendation_df.sort_values(by='weighted average recommendation score', ascending=False)
             # print(recommendation_df['movieId'])
-            recommender = movie_df.loc[movie_df['movieId'].isin(recommendation_df.head(5)['movieId'].tolist())]
-            # print("rs: ",recommender.to_dict('records'))
-            return HttpResponse(recommender.to_dict('records'))
+            recommender = movie_df.loc[movie_df['movieId'].isin(recommendation_df.head(10)['movieId'].tolist())]
+            print("rs: ",recommender)   
+            return HttpResponse(recommender.to_json(orient="records"))
 
 class RecommendationList(generics.ListAPIView):
     serializer_class = MovieSerializer
